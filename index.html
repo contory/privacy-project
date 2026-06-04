@@ -25,7 +25,8 @@
       --color-text-main: #2d2a26;
       --color-text-muted: #6b6560;
       --color-primary-dark: #1b3328; 
-      --color-accent: #8b7355;
+      --color-accent: #8b7355;        /* 고급스러운 골드 브라운 기본값 */
+      --color-accent-gradient: linear-gradient(135deg, #a38968, #735d43); /* 역동적 골드 그라데이션 */
       --color-border: #eae6df;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Noto Sans KR', sans-serif;
@@ -41,7 +42,7 @@
       overflow-x: hidden;
     }
 
-    /* 페이드업(마이크로 모션) 애니메이션 클래스 */
+    /* 페이드업(마이크로 모션) 애니메이션 */
     .fade-up {
       opacity: 0;
       transform: translateY(30px);
@@ -53,49 +54,97 @@
     }
 
     /* ====================================
-       2. 프리미엄 캡슐형(Pill) 버튼 UI
+       2. 프리미엄 역동적 캡슐형 버튼 UI
        ==================================== */
     .btn-pill {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 0.875rem 2rem; font-size: 0.9375rem; font-weight: 500; border-radius: 50px; 
-      text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent;
+      padding: 0.875rem 2.25rem; font-size: 0.9375rem; font-weight: 500; border-radius: 50px; 
+      text-decoration: none; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; 
+      border: 1px solid transparent; position: relative; overflow: hidden;
     }
-    .btn-solid { background-color: var(--color-primary-dark); color: #fff; }
-    .btn-solid:hover { background-color: #11221a; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(27, 51, 40, 0.2); }
-    .btn-ghost { background-color: transparent; color: var(--color-primary-dark); border-color: var(--color-primary-dark); }
-    .btn-ghost:hover { background-color: var(--color-primary-dark); color: #fff; transform: translateY(-2px); }
+    
+    /* 골드 브라운 솔리드 버튼 (통일성 및 시인성 확보) */
+    .btn-solid { 
+      background: var(--color-accent-gradient); 
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(115, 93, 67, 0.3);
+    }
+    
+    /* PC 호버 액션: 위로 뜨고, 사선 빛반사(Shine) 효과 */
+    .btn-solid:hover { 
+      transform: translateY(-3px); 
+      box-shadow: 0 10px 25px rgba(115, 93, 67, 0.4);
+    }
+    
+    /* 사선 빛 반사 이펙트용 가상 요소 */
+    .btn-pill::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-30px); transition: none;
+    }
+    .btn-pill:hover::after {
+      left: 150%; transition: all 0.6s ease-in-out;
+    }
+
+    /* 투명 테두리 고스트 버튼 스타일 정돈 */
+    .btn-ghost { 
+      background-color: transparent; 
+      color: #fff; 
+      border-color: rgba(255,255,255,0.4); 
+    }
+    .btn-ghost:hover { 
+      background: #fff;
+      color: var(--color-text-main);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    /* 모바일 터치 반응형 (쫀득하게 눌리는 폰트/버튼 효과) */
+    .btn-pill:active {
+      transform: scale(0.96) translateY(-1px) !important;
+      opacity: 0.9;
+    }
 
     .icon-n, .icon-c { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; font-weight: 700; font-size: 11px; border-radius: 3px; }
     .icon-n { background: #03c75a; color: white; }
     .icon-c { background: #ff4713; color: white; border-radius: 50%; }
 
     /* ====================================
-       3. 헤더 & 로고 (동래점 추가)
+       3. 헤더 & 로고 (동래점 추가 및 메뉴 한글화)
        ==================================== */
     .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2rem; transition: all 0.3s ease; background: transparent; }
     .header.scrolled { background: rgba(252, 251, 249, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
     .header-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     
-    /* 로고 텍스트 최적화 (동래점 병기) */
     .logo { 
       display: inline-flex; align-items: baseline; gap: 0.4rem;
       font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; 
       color: var(--color-text-main); text-decoration: none; 
     }
-    .logo-sub {
-      font-family: var(--font-sans); font-size: 0.875rem; font-weight: 400; color: var(--color-text-muted);
-    }
+    .logo-sub { font-family: var(--font-sans); font-size: 0.875rem; font-weight: 400; color: var(--color-text-muted); }
     .header.at-top .logo { color: #fff; }
     .header.at-top .logo-sub { color: rgba(255,255,255,0.8); }
     
     .nav { display: flex; align-items: center; gap: 2.5rem; }
-    .nav a { font-size: 0.875rem; color: var(--color-text-main); text-decoration: none; transition: 0.2s; }
+    .nav a { font-size: 0.9375rem; font-weight: 500; color: var(--color-text-main); text-decoration: none; position: relative; padding: 0.2rem 0; }
     .header.at-top .nav a { color: rgba(255,255,255,0.9); }
-    .nav a:hover { color: var(--color-accent); }
     
-    .btn-nav-book { padding: 0.5rem 1.25rem; font-size: 0.8125rem; border: 1px solid var(--color-text-main); border-radius: 50px; }
-    .header.at-top .btn-nav-book { border-color: #fff; color: #fff; }
-    .btn-nav-book:hover { background: var(--color-text-main); color: #fff; }
+    /* 헤더 텍스트 호버 밑줄 애니메이션 */
+    .nav a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px;
+      background-color: var(--color-accent); transition: width 0.3s ease;
+    }
+    .header.at-top .nav a::after { background-color: #fff; }
+    .nav a:hover::after { width: 100%; }
+    
+    /* 상단 예약하기 솔리드 버튼으로 변경하여 시인성 확보 */
+    .btn-nav-book { 
+      padding: 0.6rem 1.5rem; font-size: 0.875rem; font-weight: 500;
+      background: var(--color-accent-gradient); color: #fff !important; border-radius: 50px;
+      box-shadow: 0 4px 10px rgba(115, 93, 67, 0.2);
+    }
+    .btn-nav-book::after { display: none !important; } /* 밑줄 제거 */
+    .btn-nav-book:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(115, 93, 67, 0.3); }
 
     .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-text-main); }
     .header.at-top .mobile-menu-btn { color: #fff; }
@@ -109,23 +158,18 @@
                   url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
     }
     .hero-content { text-align: center; color: #fff; max-width: 800px; z-index: 2; padding: 0 1.5rem; }
-    
     .trust-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(255,255,255,0.15); backdrop-filter: blur(4px);
       padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.75rem; letter-spacing: 0.05em;
       margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.3);
     }
-    
     .hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
     .hero p { font-size: 1.125rem; font-weight: 300; color: rgba(255,255,255,0.85); margin-bottom: 3rem; }
-    
     .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
-    .hero-buttons .btn-ghost { border-color: rgba(255,255,255,0.5); color: #fff; }
-    .hero-buttons .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
     /* ====================================
-       5. 공통 섹션 & 유틸리티
+       5. 공통 섹션 및 레이아웃 구조
        ==================================== */
     .section { padding: 8rem 2rem; }
     .container { max-width: 1200px; margin: 0 auto; }
@@ -134,28 +178,30 @@
     .title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); color: var(--color-text-main); margin-bottom: 1rem; }
 
     /* ====================================
-       6. About
+       6. 사생활 동래 (브랜드 및 키워드)
        ==================================== */
     .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .about-image { aspect-ratio: 4/5; position: relative; }
-    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-image { aspect-ratio: 4/5; overflow: hidden; border-radius: 4px; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .about-content:hover .about-image img { transform: scale(1.03); }
     .about-text p { font-weight: 300; color: var(--color-text-muted); margin-bottom: 1.5rem; }
     .about-keywords { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; }
     .keyword { font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-primary-dark); font-style: italic; }
 
     /* ====================================
-       7. 매거진형 메뉴 레이아웃
+       7. 매거진형 메뉴 레이아웃 & 모션
        ==================================== */
     .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-    .menu-card { background: #fff; overflow: hidden; transition: transform 0.3s; border: 1px solid var(--color-border); }
-    .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    .menu-card { background: #fff; overflow: hidden; transition: all 0.4s ease; border: 1px solid var(--color-border); border-radius: 6px; }
+    .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); border-color: rgba(139,115,85,0.2); }
     .menu-card:nth-child(1), .menu-card:nth-child(2) { grid-column: span 2; }
     .menu-card:nth-child(1) .menu-img, .menu-card:nth-child(2) .menu-img { aspect-ratio: 16/9; }
     .menu-img { aspect-ratio: 4/3; overflow: hidden; position: relative; }
-    .menu-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .menu-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
     .menu-card:hover .menu-img img { transform: scale(1.05); }
     .menu-content { padding: 1.5rem; }
-    .menu-content h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .menu-content h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; transition: color 0.3s; }
+    .menu-card:hover .menu-content h3 { color: var(--color-accent); }
     .menu-desc { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1rem; min-height: 2.6em; }
     .menu-price { font-family: var(--font-sans); font-weight: 600; color: var(--color-primary-dark); }
 
@@ -164,45 +210,60 @@
        ==================================== */
     .why-visit { background-color: var(--color-bg-card); }
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-    .why-card { background: #fff; padding: 3rem 2rem; text-align: center; border: 1px solid var(--color-border); border-radius: 8px; transition: 0.3s; }
-    .why-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.04); transform: translateY(-5px); }
-    .why-icon { width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem; }
+    .why-card { background: #fff; padding: 3rem 2rem; text-align: center; border: 1px solid var(--color-border); border-radius: 8px; transition: all 0.3s ease; }
+    .why-card:hover { box-shadow: 0 15px 35px rgba(0,0,0,0.04); transform: translateY(-5px); }
+    .why-icon { width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem; transition: transform 0.4s ease; }
+    .why-card:hover .why-icon { transform: rotateY(180deg); }
     .why-card h3 { font-size: 1.125rem; margin-bottom: 1rem; }
     .why-card p { font-size: 0.875rem; color: var(--color-text-muted); }
 
     /* ====================================
-       9. 갤러리
+       9. 갤러리 (모던 스타일)
        ==================================== */
     .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-    .gallery-item { aspect-ratio: 1/1; overflow: hidden; }
+    .gallery-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 4px; }
     .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .gallery-item:hover img { transform: scale(1.06); }
 
     /* ====================================
-       10. Location 
+       10. Location (안내카드 및 보조위계 버튼 분리)
        ==================================== */
-    .location-wrapper { max-width: 800px; margin: 0 auto; background: #fff; border: 1px solid var(--color-border); padding: 4rem; border-radius: 12px; }
+    .location-wrapper { max-width: 800px; margin: 0 auto; background: #fff; border: 1px solid var(--color-border); padding: 4rem; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.02); }
     .loc-header { text-align: center; margin-bottom: 3rem; }
     .loc-info { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
     .loc-row { display: flex; align-items: flex-start; gap: 1rem; }
-    .loc-row svg { width: 24px; color: var(--color-primary-dark); flex-shrink: 0; }
+    .loc-row svg { width: 24px; color: var(--color-accent); flex-shrink: 0; }
     .loc-text h4 { font-size: 1rem; margin-bottom: 0.25rem; }
     .loc-text p { font-size: 0.9375rem; color: var(--color-text-muted); }
     
     .loc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .btn-action { padding: 1rem; text-align: center; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-main); font-weight: 500; border-radius: 8px; cursor: pointer; text-decoration: none; transition: 0.2s; }
-    .btn-action:hover { background: var(--color-primary-dark); color: #fff; }
+    
+    /* 주소복사, 전화걸기 등 보조 버튼 위계 정돈 */
+    .btn-action-sub { 
+      padding: 1rem; text-align: center; border: 1px solid var(--color-border); 
+      background: rgba(242, 239, 235, 0.4); color: var(--color-text-main); 
+      font-weight: 500; border-radius: 8px; cursor: pointer; text-decoration: none; transition: 0.2s; 
+    }
+    .btn-action-sub:hover { background: rgba(139,115,85,0.1); border-color: var(--color-accent); transform: translateY(-2px); }
+    
+    /* 길찾기 핵심 버튼은 확실한 메인 위계 지정 */
+    .btn-action-main {
+      grid-column: 1 / -1; padding: 1.1rem; text-align: center; font-weight: 600; border-radius: 8px;
+      background: var(--color-accent-gradient); color: #fff; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(115, 93, 67, 0.2); transition: 0.3s;
+    }
+    .btn-action-main:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(115, 93, 67, 0.3); }
 
     /* ====================================
-       11. CTA 
+       11. CTA (딥그린 스페이스 백그라운드)
        ==================================== */
     .cta-section { background: linear-gradient(135deg, #11221a, var(--color-primary-dark)); color: #fff; text-align: center; padding: 8rem 2rem; }
     .cta-section .label { color: var(--color-accent); }
     .cta-section .title { color: #fff; }
     .cta-buttons { display: flex; justify-content: center; gap: 1.5rem; margin-top: 3rem; flex-wrap: wrap; }
-    .cta-buttons .btn-solid { background: #fff; color: var(--color-primary-dark); }
-    .cta-buttons .btn-solid:hover { background: #f0f0f0; }
+    .cta-buttons .btn-solid { background: #fff; color: var(--color-text-main); box-shadow: 0 4px 15px rgba(255,255,255,0.1); }
+    .cta-buttons .btn-solid:hover { background: var(--color-bg-main); }
 
     /* ====================================
        12. Footer
@@ -211,16 +272,25 @@
     .footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
     .footer-sns { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
     .footer-sns a { color: rgba(255,255,255,0.5); transition: 0.3s; }
-    .footer-sns a:hover { color: #fff; }
+    .footer-sns a:hover { color: #fff; transform: translateY(-2px); }
     .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; color: rgba(255,255,255,0.4); font-size: 0.875rem; }
 
     /* ====================================
-       13. 모바일 최적화 & 스티키 바
+       13. 모바일 최적화 & 스티키 펄스 바
        ==================================== */
     .mobile-sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; box-shadow: 0 -5px 20px rgba(0,0,0,0.08); z-index: 999; }
-    .sticky-btn { flex: 1; padding: 1rem 0; text-align: center; font-weight: 600; font-size: 0.9375rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
-    .btn-naver-sticky { background: #fff; color: #03c75a; border-right: 1px solid #eee; }
-    .btn-catch-sticky { background: #fff; color: #ff4713; }
+    .sticky-btn { flex: 1; padding: 1.1rem 0; text-align: center; font-weight: 600; font-size: 0.9375rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; position: relative; }
+    .btn-naver-sticky { background: #03c75a; color: #fff; }
+    .btn-catch-sticky { background: #ff4713; color: #fff; }
+    
+    /* 모바일 스크롤 정지 시 엄지 동선을 부르는 은은한 펄스(Pulse) 애니메이션 효과 */
+    @keyframes pulse-sticky {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+    .mobile-sticky-bar a { animation: pulse-sticky 2.5s infinite ease-in-out; }
+    .btn-catch-sticky { animation-delay: 1.25s !important; }
 
     @media (max-width: 1024px) {
       .menu-grid { grid-template-columns: repeat(2, 1fr); }
@@ -238,14 +308,15 @@
       .why-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: repeat(2, 1fr); }
       .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-      .location-wrapper { padding: 2rem 1.5rem; }
+      .location-wrapper { padding: 2.5rem 1.5rem; }
       .loc-actions { grid-template-columns: 1fr; }
-      .hero-buttons { flex-direction: column; }
+      .hero-buttons { flex-direction: column; gap: 0.75rem; width: 100%; max-width: 280px; margin: 0 auto; }
+      .hero-buttons .btn-pill { width: 100%; }
     }
 
     .mobile-menu { position: fixed; inset: 0; background: var(--color-bg-main); z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; visibility: hidden; transition: 0.3s; }
     .mobile-menu.active { opacity: 1; visibility: visible; }
-    .mobile-menu a { font-family: var(--font-serif); font-size: 2rem; color: var(--color-text-main); text-decoration: none; }
+    .mobile-menu a { font-family: var(--font-sans); font-weight: 500; font-size: 1.75rem; color: var(--color-text-main); text-decoration: none; }
     .mobile-menu-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; font-size: 2.5rem; cursor: pointer; }
   </style>
 </head>
@@ -255,11 +326,11 @@
     <div class="header-inner">
       <a href="#" class="logo">사생활 <span class="logo-sub">동래점</span></a>
       <nav class="nav">
-        <a href="#about">ABOUT</a>
-        <a href="#menu">MENU</a>
-        <a href="#visit">VISIT</a>
-        <a href="#photo">PHOTO</a>
-        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-nav-book">예약하기</a>
+        <a href="#about">사생활 동래</a>
+        <a href="#menu">시그니처 메뉴</a>
+        <a href="#visit">오시는 길</a>
+        <a href="#photo">갤러리</a>
+        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-nav-book">예약하기</a>
       </nav>
       <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
         <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -269,10 +340,10 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
-    <a href="#about" class="mobile-link">ABOUT</a>
-    <a href="#menu" class="mobile-link">MENU</a>
-    <a href="#visit" class="mobile-link">VISIT</a>
-    <a href="#photo" class="mobile-link">PHOTO</a>
+    <a href="#about" class="mobile-link">사생활 동래</a>
+    <a href="#menu" class="mobile-link">시그니처 메뉴</a>
+    <a href="#visit" class="mobile-link">오시는 길</a>
+    <a href="#photo" class="mobile-link">갤러리</a>
   </div>
 
   <main>
@@ -295,7 +366,7 @@
     <section id="about" class="section container fade-up">
       <div class="about-content">
         <div class="about-image">
-          <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop" alt="사생활 분위기" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop" alt="사생활 무드컷" loading="lazy">
         </div>
         <div class="about-text">
           <span class="label">ABOUT US</span>
@@ -362,14 +433,14 @@
           <div class="menu-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop" alt="수비드 닭가슴살 샐러드" loading="lazy"></div>
           <div class="menu-content">
             <h3>수비드 닭가슴살 샐러드</h3>
-            <p class="menu-desc">저온 조리한 촉촉한 닭가슴살과 신선한 야채</p>
+            <p class="menu-desc">저온 조리한 촉촉한 닭가슴살 tobacco 신선한 야채</p>
             <p class="menu-price">16,000원</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="visit" class="why-visit section fade-up">
+    <section class="why-visit section fade-up">
       <div class="container">
         <div class="section-header">
           <span class="label">WHY VISIT</span>
@@ -401,15 +472,15 @@
         <h2 class="title">우리의 기록</h2>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop" alt="갤러리 1" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop" alt="갤러리 2" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" alt="갤러리 3" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=800&auto=format&fit=crop" alt="갤러리 4" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop" alt="갤러리 5" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop" alt="공간 무드 1" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop" alt="공간 무드 2" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" alt="요리 무드 1" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=800&auto=format&fit=crop" alt="요리 무드 2" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop" alt="디너 무드" loading="lazy"></div>
       </div>
     </section>
 
-    <section class="section fade-up">
+    <section id="visit" class="section fade-up">
       <div class="container">
         <div class="location-wrapper">
           <div class="loc-header">
@@ -433,10 +504,11 @@
             </div>
           </div>
           <div class="loc-actions">
-            <button onclick="copyAddress()" class="btn-action">주소 복사하기</button>
-            <a href="tel:051-000-0000" class="btn-action">전화 문의하기</a>
-            <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-action" style="grid-column: 1 / -1; background: var(--color-primary-dark); color: #fff;">
-              <span class="icon-n" style="margin-right: 5px;">N</span> 네이버 지도로 길찾기
+            <button onclick="copyAddress()" class="btn-action-sub">주소 복사하기</button>
+            <a href="tel:051-000-0000" class="btn-action-sub">전화 문의하기</a>
+            
+            <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-pill btn-action-main">
+              <span class="icon-n">N</span> 네이버 지도로 빠른 길찾기
             </a>
           </div>
         </div>
@@ -448,10 +520,10 @@
       <h2 class="title">오늘의 식사를<br>조금 더 특별하게</h2>
       <p style="color: rgba(255,255,255,0.7); margin-top: 1rem;">사생활에서의 특별한 시간을 미리 준비하세요</p>
       <div class="cta-buttons">
-        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-solid">
+        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-solid" style="background:#fff; color:var(--color-text-main); box-shadow:none;">
           <span class="icon-n">N</span> 네이버 예약
         </a>
-        <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-ghost" style="border-color: rgba(255,255,255,0.3); color: #fff;">
+        <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-ghost">
           <span class="icon-c">C</span> 캐치테이블 예약
         </a>
       </div>
@@ -468,7 +540,7 @@
         </a>
       </div>
       <div class="footer-bottom">
-        <p>© 2026 사생활 (The Private Life). All rights reserved.</p>
+        <p>&copy; 2026 사생활 (The Private Life). All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -478,12 +550,12 @@
       <span class="icon-n">N</span> 네이버 예약
     </a>
     <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="sticky-btn btn-catch-sticky">
-      <span class="icon-c">C</span> 캐치테이블
+      <span class="icon-c">C</span> 캐치테이블 예약
     </a>
   </div>
 
   <script>
-    /* 1. 헤더 스크롤 최적화 (Throttling) */
+    /* 1. 헤더 스크롤 최적화 (Throttling 기법) */
     const header = document.getElementById('header');
     let ticking = false;
     window.addEventListener('scroll', () => {
@@ -502,7 +574,7 @@
       }
     });
 
-    /* 2. 모바일 메뉴 토글 및 스크롤 락 */
+    /* 2. 모바일 메뉴 토글 및 스크롤 Lock */
     const menu = document.getElementById('mobileMenu');
     function toggleMobileMenu() {
       const isActive = menu.classList.toggle('active');
@@ -515,7 +587,7 @@
       });
     });
 
-    /* 3. 주소 복사 기능 (로컬 fallback 안전장치 적용) */
+    /* 3. 주소 복사 기능 (이중 안전장치 Fallback 반영) */
     function copyAddress() {
       const address = "부산광역시 동래구 여고로113번길 78";
       
