@@ -8,7 +8,8 @@
   <meta name="description" content="부산 동래구 사직동, 일상 속에서 만나는 가장 사적인 식사. 신선한 재료로 준비한 파스타, 피자, 브런치를 즐겨보세요.">
   <meta property="og:title" content="사생활 | 부산 동래 감성 다이닝">
   <meta property="og:description" content="[매일 11:00-21:00 오픈] 분위기와 맛을 모두 잡은 사직동 감성 다이닝 레스토랑. 예약 환영!">
-  <meta property="og:image" content="./images/og-image.jpg"> <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=800&auto=format&fit=crop">
+  <meta property="og:type" content="website">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,13 +70,23 @@
     .icon-c { background: #ff4713; color: white; border-radius: 50%; }
 
     /* ====================================
-       3. 헤더 & 네비게이션
+       3. 헤더 & 로고 (동래점 추가)
        ==================================== */
     .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2rem; transition: all 0.3s ease; background: transparent; }
     .header.scrolled { background: rgba(252, 251, 249, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
     .header-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-text-main); text-decoration: none; }
+    
+    /* 로고 텍스트 최적화 (동래점 병기) */
+    .logo { 
+      display: inline-flex; align-items: baseline; gap: 0.4rem;
+      font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; 
+      color: var(--color-text-main); text-decoration: none; 
+    }
+    .logo-sub {
+      font-family: var(--font-sans); font-size: 0.875rem; font-weight: 400; color: var(--color-text-muted);
+    }
     .header.at-top .logo { color: #fff; }
+    .header.at-top .logo-sub { color: rgba(255,255,255,0.8); }
     
     .nav { display: flex; align-items: center; gap: 2.5rem; }
     .nav a { font-size: 0.875rem; color: var(--color-text-main); text-decoration: none; transition: 0.2s; }
@@ -94,11 +105,11 @@
        ==================================== */
     .hero {
       position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      background: linear-gradient(to bottom, rgba(27,51,40,0.5), rgba(0,0,0,0.7)), url('./images/hero-bg.jpg') center/cover no-repeat;
+      background: linear-gradient(to bottom, rgba(27,51,40,0.5), rgba(0,0,0,0.7)), 
+                  url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
     }
     .hero-content { text-align: center; color: #fff; max-width: 800px; z-index: 2; padding: 0 1.5rem; }
     
-    /* 과장되지 않은 감성 뱃지 */
     .trust-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: rgba(255,255,255,0.15); backdrop-filter: blur(4px);
@@ -242,7 +253,7 @@
 
   <header class="header at-top" id="header">
     <div class="header-inner">
-      <a href="#" class="logo">사생활</a>
+      <a href="#" class="logo">사생활 <span class="logo-sub">동래점</span></a>
       <nav class="nav">
         <a href="#about">ABOUT</a>
         <a href="#menu">MENU</a>
@@ -284,7 +295,7 @@
     <section id="about" class="section container fade-up">
       <div class="about-content">
         <div class="about-image">
-          <img src="./images/about.jpg" alt="사생활 분위기" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop" alt="사생활 분위기" loading="lazy">
         </div>
         <div class="about-text">
           <span class="label">ABOUT US</span>
@@ -308,7 +319,7 @@
       </div>
       <div class="menu-grid">
         <div class="menu-card fade-up">
-          <div class="menu-img"><img src="./images/menu1.jpg" alt="바닷마을 파스타" loading="lazy"></div>
+          <div class="menu-img"><img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=800&auto=format&fit=crop" alt="바닷마을 파스타" loading="lazy"></div>
           <div class="menu-content">
             <h3>바닷마을 파스타</h3>
             <p class="menu-desc">신선한 해산물이 가득 담겨 바다의 향긋함과 깊은 풍미를 끌어올린 사생활의 시그니처 오일 파스타</p>
@@ -316,7 +327,7 @@
           </div>
         </div>
         <div class="menu-card fade-up">
-          <div class="menu-img"><img src="./images/menu2.jpg" alt="갈릭어니언 페퍼로니 피자" loading="lazy"></div>
+          <div class="menu-img"><img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=800&auto=format&fit=crop" alt="갈릭어니언 페퍼로니 피자" loading="lazy"></div>
           <div class="menu-content">
             <h3>갈릭어니언 페퍼로니 피자</h3>
             <p class="menu-desc">구운 마늘과 양파의 달큰함 위에 짭짤한 페퍼로니가 환상적인 밸런스를 맞춘 프리미엄 씬 피자</p>
@@ -324,7 +335,7 @@
           </div>
         </div>
         <div class="menu-card fade-up">
-          <div class="menu-img"><img src="./images/menu3.jpg" alt="시골오일파스타" loading="lazy"></div>
+          <div class="menu-img"><img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=800&auto=format&fit=crop" alt="시골오일파스타" loading="lazy"></div>
           <div class="menu-content">
             <h3>시골오일파스타</h3>
             <p class="menu-desc">담백한 올리브오일과 마늘의 정석적인 만남</p>
@@ -332,7 +343,7 @@
           </div>
         </div>
         <div class="menu-card fade-up">
-          <div class="menu-img"><img src="./images/menu4.jpg" alt="베이컨 크림 파스타" loading="lazy"></div>
+          <div class="menu-img"><img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=800&auto=format&fit=crop" alt="베이컨 크림 파스타" loading="lazy"></div>
           <div class="menu-content">
             <h3>베이컨 크림 파스타</h3>
             <p class="menu-desc">꾸덕하고 고소한 크림과 바삭한 베이컨의 조화</p>
@@ -340,7 +351,7 @@
           </div>
         </div>
         <div class="menu-card fade-up">
-          <div class="menu-img"><img src="./images/menu5.jpg" alt="버팔로 윙" loading="lazy"></div>
+          <div class="menu-img"><img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?q=80&w=800&auto=format&fit=crop" alt="버팔로 윙" loading="lazy"></div>
           <div class="menu-content">
             <h3>버팔로 윙</h3>
             <p class="menu-desc">맥주나 와인에 완벽하게 곁들이는 스몰 디쉬</p>
@@ -348,7 +359,7 @@
           </div>
         </div>
         <div class="menu-card fade-up">
-          <div class="menu-img"><img src="./images/menu6.jpg" alt="수비드 닭가슴살 샐러드" loading="lazy"></div>
+          <div class="menu-img"><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=800&auto=format&fit=crop" alt="수비드 닭가슴살 샐러드" loading="lazy"></div>
           <div class="menu-content">
             <h3>수비드 닭가슴살 샐러드</h3>
             <p class="menu-desc">저온 조리한 촉촉한 닭가슴살과 신선한 야채</p>
@@ -390,11 +401,11 @@
         <h2 class="title">우리의 기록</h2>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item fade-up"><img src="./images/gallery1.jpg" alt="갤러리 1" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="./images/gallery2.jpg" alt="갤러리 2" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="./images/gallery3.jpg" alt="갤러리 3" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="./images/gallery4.jpg" alt="갤러리 4" loading="lazy"></div>
-        <div class="gallery-item fade-up"><img src="./images/gallery5.jpg" alt="갤러리 5" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop" alt="갤러리 1" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?q=80&w=800&auto=format&fit=crop" alt="갤러리 2" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" alt="갤러리 3" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=800&auto=format&fit=crop" alt="갤러리 4" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=800&auto=format&fit=crop" alt="갤러리 5" loading="lazy"></div>
       </div>
     </section>
 
@@ -410,7 +421,7 @@
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
               <div class="loc-text">
                 <h4>주소</h4>
-                <p id="addressText">부산광역시 동래구 여고로113번길 78 (사직동)<br>A동 2층 사생활</p>
+                <p>부산광역시 동래구 여고로113번길 78 (사직동)<br>A동 2층 사생활</p>
               </div>
             </div>
             <div class="loc-row">
@@ -508,7 +519,6 @@
     function copyAddress() {
       const address = "부산광역시 동래구 여고로113번길 78";
       
-      // 최신 브라우저 & HTTPS 환경 (또는 localhost)
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(address).then(() => {
           alert("주소가 복사되었습니다. 지도 앱에 붙여넣기 해주세요!");
@@ -516,10 +526,8 @@
           console.error('클립보드 복사 실패:', err);
         });
       } else {
-        // Fallback: 구형 브라우저 또는 일반 로컬(http) 환경 우회 처리
         let textArea = document.createElement("textarea");
         textArea.value = address;
-        // 텍스트 에어리어 화면 밖으로 숨기기
         textArea.style.position = "fixed";
         textArea.style.left = "-999999px";
         textArea.style.top = "-999999px";
