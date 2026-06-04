@@ -3,1374 +3,482 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>사생활 | 부산 동래구 사직동 양식 레스토랑</title>
-  <meta name="description" content="일상 속에서 만나는 가장 사적인 식사. 부산 동래구 사직동에 위치한 감성 다이닝 레스토랑 사생활. 파스타, 브런치, 피자와 함께하는 특별한 시간.">
-  <meta name="keywords" content="부산 동래 맛집, 사직동 맛집, 부산 데이트 코스, 양식 레스토랑, 파스타 맛집, 브런치 카페, 사생활">
-  <meta property="og:title" content="사생활 | 부산 동래구 사직동 양식 레스토랑">
-  <meta property="og:description" content="일상 속에서 만나는 가장 사적인 식사. 분위기와 맛을 함께 즐기는 감성 다이닝.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ko_KR">
+  <title>사생활 | 부산 동래 양식 다이닝</title>
+  
+  <meta name="description" content="부산 동래구 사직동, 일상 속에서 만나는 가장 사적인 식사. 신선한 재료로 준비한 파스타, 피자, 브런치를 즐겨보세요.">
+  <meta property="og:title" content="사생활 | 부산 동래 감성 다이닝">
+  <meta property="og:description" content="[매일 11:00-21:00 오픈] 분위기와 맛을 모두 잡은 사직동 감성 다이닝 레스토랑. 예약 환영!">
+  <meta property="og:image" content="./images/og-image.jpg"> <meta property="og:type" content="website">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
   <style>
+    /* ====================================
+       1. 베이스 및 컬러 변수 세팅
+       ==================================== */
     :root {
-      --color-background: #f5f3f0;
-      --color-foreground: #2d2a26;
-      --color-primary: #2d4a3e;
-      --color-primary-light: #3d5a4e;
+      --color-bg-main: #fcfbf9;      
+      --color-bg-card: #FDFBF7;      
+      --color-text-main: #2d2a26;
+      --color-text-muted: #6b6560;
+      --color-primary-dark: #1b3328; 
       --color-accent: #8b7355;
-      --color-muted: #6b6560;
-      --color-border: #e5e0da;
-      --color-card: #faf9f7;
+      --color-border: #eae6df;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Noto Sans KR', sans-serif;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-sans);
-      background-color: var(--color-background);
-      color: var(--color-foreground);
+      background-color: var(--color-bg-main);
+      color: var(--color-text-main);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    ::selection {
-      background-color: rgba(45, 74, 62, 0.2);
-      color: var(--color-foreground);
+    /* 페이드업(마이크로 모션) 애니메이션 클래스 */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Header */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.25rem 2rem;
-      transition: all 0.3s ease;
-      background: transparent;
+    /* ====================================
+       2. 프리미엄 캡슐형(Pill) 버튼 UI
+       ==================================== */
+    .btn-pill {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.875rem 2rem; font-size: 0.9375rem; font-weight: 500; border-radius: 50px; 
+      text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: 1px solid transparent;
     }
+    .btn-solid { background-color: var(--color-primary-dark); color: #fff; }
+    .btn-solid:hover { background-color: #11221a; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(27, 51, 40, 0.2); }
+    .btn-ghost { background-color: transparent; color: var(--color-primary-dark); border-color: var(--color-primary-dark); }
+    .btn-ghost:hover { background-color: var(--color-primary-dark); color: #fff; transform: translateY(-2px); }
 
-    .header.scrolled {
-      background: rgba(245, 243, 240, 0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--color-border);
-    }
+    .icon-n, .icon-c { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; font-weight: 700; font-size: 11px; border-radius: 3px; }
+    .icon-n { background: #03c75a; color: white; }
+    .icon-c { background: #ff4713; color: white; border-radius: 50%; }
 
-    .header-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+    /* ====================================
+       3. 헤더 & 네비게이션
+       ==================================== */
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 2rem; transition: all 0.3s ease; background: transparent; }
+    .header.scrolled { background: rgba(252, 251, 249, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); }
+    .header-inner { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 600; color: var(--color-text-main); text-decoration: none; }
+    .header.at-top .logo { color: #fff; }
+    
+    .nav { display: flex; align-items: center; gap: 2.5rem; }
+    .nav a { font-size: 0.875rem; color: var(--color-text-main); text-decoration: none; transition: 0.2s; }
+    .header.at-top .nav a { color: rgba(255,255,255,0.9); }
+    .nav a:hover { color: var(--color-accent); }
+    
+    .btn-nav-book { padding: 0.5rem 1.25rem; font-size: 0.8125rem; border: 1px solid var(--color-text-main); border-radius: 50px; }
+    .header.at-top .btn-nav-book { border-color: #fff; color: #fff; }
+    .btn-nav-book:hover { background: var(--color-text-main); color: #fff; }
 
-    .logo {
-      font-family: var(--font-serif);
-      font-size: 1.75rem;
-      font-weight: 600;
-      color: var(--color-foreground);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-    }
+    .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--color-text-main); }
+    .header.at-top .mobile-menu-btn { color: #fff; }
 
-    .header.at-top .logo {
-      color: #fff;
-    }
-
-    .nav {
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    .nav a {
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: var(--color-foreground);
-      text-decoration: none;
-      letter-spacing: 0.025em;
-      transition: color 0.2s;
-    }
-
-    .header.at-top .nav a {
-      color: rgba(255, 255, 255, 0.9);
-    }
-
-    .nav a:hover {
-      color: var(--color-primary);
-    }
-
-    .header.at-top .nav a:hover {
-      color: #fff;
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-
-    .mobile-menu-btn svg {
-      width: 24px;
-      height: 24px;
-      color: var(--color-foreground);
-    }
-
-    .header.at-top .mobile-menu-btn svg {
-      color: #fff;
-    }
-
-    /* Hero Section */
+    /* ====================================
+       4. 히어로 섹션
+       ==================================== */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6)),
-                  url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80') center/cover no-repeat;
-    }
-
-    .hero-content {
-      text-align: center;
-      color: #fff;
-      padding: 2rem;
-      max-width: 900px;
-    }
-
-    .hero-label {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      margin-bottom: 2rem;
-    }
-
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero p {
-      font-size: 1.125rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.85);
-      max-width: 600px;
-      margin: 0 auto 3rem;
-      line-height: 1.8;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem 2rem;
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      border-radius: 0;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      border: none;
-    }
-
-    .btn-primary {
-      background: #fff;
-      color: var(--color-foreground);
-    }
-
-    .btn-primary:hover {
-      background: var(--color-primary);
-      color: #fff;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: #fff;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255,255,255,0.6);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-    }
-
-    .scroll-indicator span {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
-    }
-
-    /* Section Styles */
-    .section {
-      padding: 6rem 2rem;
-    }
-
-    .section-large {
-      padding: 8rem 2rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-label {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-      color: var(--color-foreground);
-      margin-bottom: 1rem;
-    }
-
-    .section-subtitle {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--color-muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* About Section */
-    .about {
-      background: var(--color-card);
-    }
-
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .about-image {
-      position: relative;
-      aspect-ratio: 4/5;
-      overflow: hidden;
-    }
-
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .about-image::after {
-      content: '';
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
-      right: -2rem;
-      bottom: -2rem;
-      border: 1px solid var(--color-primary);
-      z-index: -1;
-    }
-
-    .about-text h2 {
-      font-family: var(--font-serif);
-      font-size: 2.5rem;
-      font-weight: 400;
-      margin-bottom: 1.5rem;
-      line-height: 1.3;
-    }
-
-    .about-text p {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--color-muted);
-      line-height: 2;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--color-border);
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 600;
-      color: var(--color-primary);
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--color-muted);
-      margin-top: 0.25rem;
-    }
-
-    /* Menu Section */
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-
-    .menu-card {
-      background: var(--color-card);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .menu-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
-
-    .menu-card-image {
-      position: relative;
-      aspect-ratio: 4/3;
-      overflow: hidden;
-    }
-
-    .menu-card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .menu-card:hover .menu-card-image img {
-      transform: scale(1.05);
-    }
-
-    .menu-badge {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      background: var(--color-primary);
-      color: #fff;
-      font-size: 0.625rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.375rem 0.75rem;
-    }
-
-    .menu-card-content {
-      padding: 1.5rem;
-    }
-
-    .menu-card-content h3 {
-      font-family: var(--font-serif);
-      font-size: 1.375rem;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .menu-card-content p {
-      font-size: 0.875rem;
-      color: var(--color-muted);
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .menu-price {
-      font-family: var(--font-serif);
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--color-accent);
-    }
-
-    /* Drinks Section */
-    .drinks {
-      background: var(--color-card);
-    }
-
-    .drinks-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-    }
-
-    .drinks-category h3 {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .drink-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 1rem 0;
-      border-bottom: 1px dashed var(--color-border);
-    }
-
-    .drink-name {
-      font-size: 1rem;
-      font-weight: 400;
-    }
-
-    .drink-desc {
-      font-size: 0.875rem;
-      color: var(--color-muted);
-      margin-top: 0.25rem;
-    }
-
-    .drink-price {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--color-accent);
-      white-space: nowrap;
-      margin-left: 1rem;
-    }
-
-    /* Dining Mood Section */
-    .mood-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .mood-item {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .mood-item-large {
-      grid-row: span 2;
-    }
-
-    .mood-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .mood-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .mood-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-      display: flex;
-      align-items: flex-end;
-      padding: 2rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .mood-item:hover .mood-overlay {
-      opacity: 1;
-    }
-
-    .mood-overlay span {
-      color: #fff;
-      font-size: 1.125rem;
-      font-weight: 400;
-    }
-
-    /* Why Visit Section */
-    .why-visit {
-      background: var(--color-primary);
-      color: #fff;
-    }
-
-    .why-visit .section-label {
-      color: rgba(255,255,255,0.7);
-    }
-
-    .why-visit .section-title {
-      color: #fff;
-    }
-
-    .why-visit .section-subtitle {
-      color: rgba(255,255,255,0.7);
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
-    }
-
-    .why-card {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: all 0.3s ease;
-    }
-
-    .why-card:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-4px);
-    }
-
-    .why-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 1.5rem;
-      opacity: 0.8;
-    }
-
-    .why-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      font-weight: 500;
-      margin-bottom: 0.75rem;
-    }
-
-    .why-card p {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-    }
-
-    /* Gallery Section */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 250px);
-      gap: 1rem;
-    }
-
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .gallery-item:nth-child(1) {
-      grid-column: span 2;
-      grid-row: span 2;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.05);
-    }
-
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .gallery-item:hover .gallery-overlay {
-      opacity: 1;
-    }
-
-    .gallery-overlay svg {
-      width: 32px;
-      height: 32px;
-      color: #fff;
-    }
-
-    /* Location Section */
-    .location {
-      background: var(--color-card);
-    }
-
-    .location-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-    }
-
-    .location-map {
-      background: var(--color-border);
-      aspect-ratio: 4/3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden; /* Added to keep iframe within border */
-    }
-
-    .location-info h3 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 400;
-      margin-bottom: 2rem;
-    }
-
-    .location-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .location-item {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .location-item svg {
-      width: 20px;
-      height: 20px;
-      color: var(--color-primary);
-      flex-shrink: 0;
-      margin-top: 0.25rem;
-    }
-
-    .location-item h4 {
-      font-size: 0.875rem;
-      font-weight: 500;
-      margin-bottom: 0.25rem;
-    }
-
-    .location-item p {
-      font-size: 0.9375rem;
-      color: var(--color-muted);
-      line-height: 1.6;
-    }
-
-    .btn-naver {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-      padding: 1rem 1.5rem;
-      background: #03c75a;
-      color: #fff;
-      font-size: 0.875rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-
-    .btn-naver:hover {
-      background: #02b351;
-    }
-
-    /* Reservation Section */
-    .reservation {
-      background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5)),
-                  url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920&q=80') center/cover no-repeat;
-      text-align: center;
-      color: #fff;
-    }
-
-    .reservation h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
-
-    .reservation p {
-      font-size: 1.125rem;
-      font-weight: 300;
-      color: rgba(255,255,255,0.8);
-      margin-bottom: 2.5rem;
-    }
-
-    .reservation-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-dark {
-      background: var(--color-foreground);
-      color: #fff;
-    }
-
-    .btn-dark:hover {
-      background: var(--color-primary);
-    }
-
-    /* Footer */
-    .footer {
-      background: var(--color-foreground);
-      color: #fff;
-      padding: 4rem 2rem 2rem;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .footer-brand h3 {
-      font-family: var(--font-serif);
-      font-size: 1.75rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
-    }
-
-    .footer-brand p {
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .footer-social a {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-
-    .footer-social a:hover {
-      background: var(--color-primary);
-      border-color: var(--color-primary);
-    }
-
-    .footer-col h4 {
-      font-size: 0.875rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .footer-col p,
-    .footer-col a {
-      display: block;
-      font-size: 0.875rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 2;
-      text-decoration: none;
-    }
-
-    .footer-col a:hover {
-      color: #fff;
-    }
-
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 3rem auto 0;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      text-align: center;
-      font-size: 0.8125rem;
-      color: rgba(255,255,255,0.5);
-    }
+      position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(to bottom, rgba(27,51,40,0.5), rgba(0,0,0,0.7)), url('./images/hero-bg.jpg') center/cover no-repeat;
+    }
+    .hero-content { text-align: center; color: #fff; max-width: 800px; z-index: 2; padding: 0 1.5rem; }
+    
+    /* 과장되지 않은 감성 뱃지 */
+    .trust-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(4px);
+      padding: 0.5rem 1rem; border-radius: 50px; font-size: 0.75rem; letter-spacing: 0.05em;
+      margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 1.5rem; }
+    .hero p { font-size: 1.125rem; font-weight: 300; color: rgba(255,255,255,0.85); margin-bottom: 3rem; }
+    
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
+    .hero-buttons .btn-ghost { border-color: rgba(255,255,255,0.5); color: #fff; }
+    .hero-buttons .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+    /* ====================================
+       5. 공통 섹션 & 유틸리티
+       ==================================== */
+    .section { padding: 8rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em; color: var(--color-accent); margin-bottom: 1rem; display: block; }
+    .title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); color: var(--color-text-main); margin-bottom: 1rem; }
+
+    /* ====================================
+       6. About
+       ==================================== */
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-image { aspect-ratio: 4/5; position: relative; }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; }
+    .about-text p { font-weight: 300; color: var(--color-text-muted); margin-bottom: 1.5rem; }
+    .about-keywords { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; }
+    .keyword { font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-primary-dark); font-style: italic; }
+
+    /* ====================================
+       7. 매거진형 메뉴 레이아웃
+       ==================================== */
+    .menu-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .menu-card { background: #fff; overflow: hidden; transition: transform 0.3s; border: 1px solid var(--color-border); }
+    .menu-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    .menu-card:nth-child(1), .menu-card:nth-child(2) { grid-column: span 2; }
+    .menu-card:nth-child(1) .menu-img, .menu-card:nth-child(2) .menu-img { aspect-ratio: 16/9; }
+    .menu-img { aspect-ratio: 4/3; overflow: hidden; position: relative; }
+    .menu-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .menu-card:hover .menu-img img { transform: scale(1.05); }
+    .menu-content { padding: 1.5rem; }
+    .menu-content h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .menu-desc { font-size: 0.875rem; color: var(--color-text-muted); margin-bottom: 1rem; min-height: 2.6em; }
+    .menu-price { font-family: var(--font-sans); font-weight: 600; color: var(--color-primary-dark); }
+
+    /* ====================================
+       8. Why Visit 
+       ==================================== */
+    .why-visit { background-color: var(--color-bg-card); }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .why-card { background: #fff; padding: 3rem 2rem; text-align: center; border: 1px solid var(--color-border); border-radius: 8px; transition: 0.3s; }
+    .why-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.04); transform: translateY(-5px); }
+    .why-icon { width: 40px; height: 40px; color: var(--color-accent); margin-bottom: 1.5rem; }
+    .why-card h3 { font-size: 1.125rem; margin-bottom: 1rem; }
+    .why-card p { font-size: 0.875rem; color: var(--color-text-muted); }
+
+    /* ====================================
+       9. 갤러리
+       ==================================== */
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .gallery-item { aspect-ratio: 1/1; overflow: hidden; }
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* ====================================
+       10. Location 
+       ==================================== */
+    .location-wrapper { max-width: 800px; margin: 0 auto; background: #fff; border: 1px solid var(--color-border); padding: 4rem; border-radius: 12px; }
+    .loc-header { text-align: center; margin-bottom: 3rem; }
+    .loc-info { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
+    .loc-row { display: flex; align-items: flex-start; gap: 1rem; }
+    .loc-row svg { width: 24px; color: var(--color-primary-dark); flex-shrink: 0; }
+    .loc-text h4 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .loc-text p { font-size: 0.9375rem; color: var(--color-text-muted); }
+    
+    .loc-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-action { padding: 1rem; text-align: center; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-main); font-weight: 500; border-radius: 8px; cursor: pointer; text-decoration: none; transition: 0.2s; }
+    .btn-action:hover { background: var(--color-primary-dark); color: #fff; }
+
+    /* ====================================
+       11. CTA 
+       ==================================== */
+    .cta-section { background: linear-gradient(135deg, #11221a, var(--color-primary-dark)); color: #fff; text-align: center; padding: 8rem 2rem; }
+    .cta-section .label { color: var(--color-accent); }
+    .cta-section .title { color: #fff; }
+    .cta-buttons { display: flex; justify-content: center; gap: 1.5rem; margin-top: 3rem; flex-wrap: wrap; }
+    .cta-buttons .btn-solid { background: #fff; color: var(--color-primary-dark); }
+    .cta-buttons .btn-solid:hover { background: #f0f0f0; }
+
+    /* ====================================
+       12. Footer
+       ==================================== */
+    .footer { background: #111; color: #fff; padding: 4rem 2rem 2rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .footer-sns { display: flex; justify-content: center; gap: 1rem; margin: 2rem 0; }
+    .footer-sns a { color: rgba(255,255,255,0.5); transition: 0.3s; }
+    .footer-sns a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; color: rgba(255,255,255,0.4); font-size: 0.875rem; }
+
+    /* ====================================
+       13. 모바일 최적화 & 스티키 바
+       ==================================== */
+    .mobile-sticky-bar { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; box-shadow: 0 -5px 20px rgba(0,0,0,0.08); z-index: 999; }
+    .sticky-btn { flex: 1; padding: 1rem 0; text-align: center; font-weight: 600; font-size: 0.9375rem; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .btn-naver-sticky { background: #fff; color: #03c75a; border-right: 1px solid #eee; }
+    .btn-catch-sticky { background: #fff; color: #ff4713; }
 
-    /* Mobile Styles */
     @media (max-width: 1024px) {
-      .nav { display: none; }
-      .mobile-menu-btn { display: block; }
-      .about-content { grid-template-columns: 1fr; gap: 3rem; }
-      .about-image { max-width: 500px; margin: 0 auto; }
       .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .menu-card:nth-child(1), .menu-card:nth-child(2) { grid-column: span 1; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
-      .location-content { grid-template-columns: 1fr; gap: 2rem; }
-      .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
     }
 
     @media (max-width: 768px) {
-      .section { padding: 4rem 1.5rem; }
-      .section-large { padding: 5rem 1.5rem; }
-      .hero h1 { font-size: 2.25rem; }
+      body { padding-bottom: 60px; } 
+      .mobile-sticky-bar { display: flex; }
+      .nav, .btn-nav-book { display: none; }
+      .mobile-menu-btn { display: block; }
+      .about-content { grid-template-columns: 1fr; }
       .menu-grid { grid-template-columns: 1fr; }
-      .drinks-grid { grid-template-columns: 1fr; }
-      .mood-grid { grid-template-columns: 1fr; }
-      .mood-item-large { grid-row: span 1; }
       .why-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item:nth-child(1) { grid-column: span 1; }
-      .footer-content { grid-template-columns: 1fr; text-align: center; }
-      .footer-social { justify-content: center; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+      .location-wrapper { padding: 2rem 1.5rem; }
+      .loc-actions { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; }
     }
 
-    /* Mobile Menu */
-    .mobile-menu {
-      position: fixed;
-      inset: 0;
-      background: var(--color-background);
-      z-index: 200;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .mobile-menu.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .mobile-menu a {
-      font-family: var(--font-serif);
-      font-size: 1.75rem;
-      color: var(--color-foreground);
-      text-decoration: none;
-    }
-
-    .mobile-menu-close {
-      position: absolute;
-      top: 1.25rem;
-      right: 2rem;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      color: var(--color-foreground);
-    }
+    .mobile-menu { position: fixed; inset: 0; background: var(--color-bg-main); z-index: 2000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; opacity: 0; visibility: hidden; transition: 0.3s; }
+    .mobile-menu.active { opacity: 1; visibility: visible; }
+    .mobile-menu a { font-family: var(--font-serif); font-size: 2rem; color: var(--color-text-main); text-decoration: none; }
+    .mobile-menu-close { position: absolute; top: 1.5rem; right: 2rem; background: none; border: none; font-size: 2.5rem; cursor: pointer; }
   </style>
 </head>
 <body>
+
   <header class="header at-top" id="header">
     <div class="header-inner">
       <a href="#" class="logo">사생활</a>
       <nav class="nav">
-        <a href="#about">소개</a>
-        <a href="#menu">메뉴</a>
-        <a href="#mood">공간</a>
-        <a href="#gallery">갤러리</a>
-        <a href="#location">위치</a>
-        <a href="#reservation">예약</a>
+        <a href="#about">ABOUT</a>
+        <a href="#menu">MENU</a>
+        <a href="#visit">VISIT</a>
+        <a href="#photo">PHOTO</a>
+        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-nav-book">예약하기</a>
       </nav>
-      <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="메뉴 열기">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <svg width="28" height="28" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
     </div>
   </header>
 
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="메뉴 닫기">&times;</button>
-    <a href="#about" class="mobile-link">소개</a>
-    <a href="#menu" class="mobile-link">메뉴</a>
-    <a href="#mood" class="mobile-link">공간</a>
-    <a href="#gallery" class="mobile-link">갤러리</a>
-    <a href="#location" class="mobile-link">위치</a>
-    <a href="#reservation" class="mobile-link">예약</a>
+    <button class="mobile-menu-close" onclick="toggleMobileMenu()">&times;</button>
+    <a href="#about" class="mobile-link">ABOUT</a>
+    <a href="#menu" class="mobile-link">MENU</a>
+    <a href="#visit" class="mobile-link">VISIT</a>
+    <a href="#photo" class="mobile-link">PHOTO</a>
   </div>
 
   <main>
     <section class="hero">
-      <div class="hero-content">
-        <span class="hero-label">Western Restaurant in Busan</span>
+      <div class="hero-content fade-up">
+        <div class="trust-badge">✨ 사직동 감성 다이닝</div>
         <h1>일상 속에서 만나는<br>가장 사적인 식사</h1>
-        <p>부산 동래구 사직동, 분위기와 맛을 함께 즐기는<br>양식 레스토랑 사생활</p>
+        <p>부산 동래구 사직동, 분위기와 맛을 모두 담은 감성 다이닝</p>
         <div class="hero-buttons">
-          <a href="#menu" class="btn btn-primary">메뉴 둘러보기</a>
-          <a href="#location" class="btn btn-outline">위치 확인하기</a>
+          <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-solid">
+            <span class="icon-n">N</span> 네이버 예약하기
+          </a>
+          <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-ghost">
+            <span class="icon-c">C</span> 캐치테이블 예약
+          </a>
         </div>
-      </div>
-      <div class="scroll-indicator">
-        SCROLL
-        <span></span>
       </div>
     </section>
 
-    <section class="section section-large about" id="about">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-image">
-            <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=800&q=80" alt="사생활 레스토랑 내부" loading="lazy">
-          </div>
-          <div class="about-text">
-            <span class="section-label">About Us</span>
-            <h2>당신만의 사적인<br>공간에서 즐기는 식사</h2>
-            <p>사생활은 바쁜 일상 속에서 잠시 벗어나,<br>
-            오롯이 나만의 시간을 즐길 수 있는 공간입니다.</p>
-            <p>데이트, 친구와의 모임, 혼자만의 브런치까지.<br>
-            어떤 순간이든 특별하게 만들어 드립니다.</p>
-            <div class="about-stats">
-              <div class="stat">
-                <div class="stat-value">11:30</div>
-                <div class="stat-label">오픈 시간</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">21:00</div>
-                <div class="stat-label">마감 시간</div>
-              </div>
-              <div class="stat">
-                <div class="stat-value">20+</div>
-                <div class="stat-label">메뉴 종류</div>
-              </div>
-            </div>
+    <section id="about" class="section container fade-up">
+      <div class="about-content">
+        <div class="about-image">
+          <img src="./images/about.jpg" alt="사생활 분위기" loading="lazy">
+        </div>
+        <div class="about-text">
+          <span class="label">ABOUT US</span>
+          <h2 class="title">당신만의 사적인<br>공간에서 즐기는 여유</h2>
+          <p>사생활은 바쁜 일상 속에서 잠시 벗어나, 오롯이 나만의 시간을 즐길 수 있는 감성 다이닝입니다.</p>
+          <p>매일 아침 공수한 신선한 식재료와 정성, 그리고 우아한 음악이 흐르는 공간. 데이트, 모임, 혹은 나를 위한 브런치까지 모든 순간을 정성스럽게 세팅해 드립니다.</p>
+          <div class="about-keywords">
+            <div class="keyword">Pasta</div>
+            <div class="keyword">Brunch</div>
+            <div class="keyword">Dining</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-large" id="menu">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Signature Menu</span>
-          <h2 class="section-title">사생활의 대표 메뉴</h2>
-          <p class="section-subtitle">신선한 재료와 정성으로 준비한<br>사생활만의 시그니처 요리를 만나보세요</p>
+    <section id="menu" class="section container fade-up">
+      <div class="section-header">
+        <span class="label">SIGNATURE MENU</span>
+        <h2 class="title">사생활 매거진</h2>
+        <p style="color: var(--color-text-muted);">정성을 담은 사생활의 시그니처 디쉬를 경험하세요.</p>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card fade-up">
+          <div class="menu-img"><img src="./images/menu1.jpg" alt="바닷마을 파스타" loading="lazy"></div>
+          <div class="menu-content">
+            <h3>바닷마을 파스타</h3>
+            <p class="menu-desc">신선한 해산물이 가득 담겨 바다의 향긋함과 깊은 풍미를 끌어올린 사생활의 시그니처 오일 파스타</p>
+            <p class="menu-price">17,900원</p>
+          </div>
         </div>
-        <div class="menu-grid">
-          <div class="menu-card">
-            <div class="menu-card-image">
-              <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=80" alt="바닷마을 파스타" loading="lazy">
-              <span class="menu-badge">Best</span>
-            </div>
-            <div class="menu-card-content">
-              <h3>바닷마을 파스타</h3>
-              <p>신선한 해산물과 토마토 베이스의 풍미 가득한 파스타</p>
-              <span class="menu-price">18,000원</span>
-            </div>
+        <div class="menu-card fade-up">
+          <div class="menu-img"><img src="./images/menu2.jpg" alt="갈릭어니언 페퍼로니 피자" loading="lazy"></div>
+          <div class="menu-content">
+            <h3>갈릭어니언 페퍼로니 피자</h3>
+            <p class="menu-desc">구운 마늘과 양파의 달큰함 위에 짭짤한 페퍼로니가 환상적인 밸런스를 맞춘 프리미엄 씬 피자</p>
+            <p class="menu-price">24,900원</p>
           </div>
-          <div class="menu-card">
-            <div class="menu-card-image">
-              <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600&q=80" alt="베이컨 크림파스타" loading="lazy">
-              <span class="menu-badge">Popular</span>
-            </div>
-            <div class="menu-card-content">
-              <h3>베이컨 크림파스타</h3>
-              <p>고소한 크림과 바삭한 베이컨의 완벽한 조화</p>
-              <span class="menu-price">15,000원</span>
-            </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-img"><img src="./images/menu3.jpg" alt="시골오일파스타" loading="lazy"></div>
+          <div class="menu-content">
+            <h3>시골오일파스타</h3>
+            <p class="menu-desc">담백한 올리브오일과 마늘의 정석적인 만남</p>
+            <p class="menu-price">16,900원</p>
           </div>
-          <div class="menu-card">
-            <div class="menu-card-image">
-              <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&q=80" alt="수비드 닭가슴살 샐러드" loading="lazy">
-            </div>
-            <div class="menu-card-content">
-              <h3>수비드 닭가슴살 샐러드 보울</h3>
-              <p>저온 조리한 촉촉한 닭가슴살과 신선한 채소</p>
-              <span class="menu-price">16,000원</span>
-            </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-img"><img src="./images/menu4.jpg" alt="베이컨 크림 파스타" loading="lazy"></div>
+          <div class="menu-content">
+            <h3>베이컨 크림 파스타</h3>
+            <p class="menu-desc">꾸덕하고 고소한 크림과 바삭한 베이컨의 조화</p>
+            <p class="menu-price">15,900원</p>
           </div>
-          <div class="menu-card">
-            <div class="menu-card-image">
-              <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&q=80" alt="페퍼로니 피자" loading="lazy">
-            </div>
-            <div class="menu-card-content">
-              <h3>페퍼로니 피자</h3>
-              <p>바삭한 도우 위에 페퍼로니와 모짜렐라 치즈</p>
-              <span class="menu-price">19,000원</span>
-            </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-img"><img src="./images/menu5.jpg" alt="버팔로 윙" loading="lazy"></div>
+          <div class="menu-content">
+            <h3>버팔로 윙</h3>
+            <p class="menu-desc">맥주나 와인에 완벽하게 곁들이는 스몰 디쉬</p>
+            <p class="menu-price">15,900원</p>
           </div>
-          <div class="menu-card">
-            <div class="menu-card-image">
-              <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600&q=80" alt="버팔로윙봉" loading="lazy">
-            </div>
-            <div class="menu-card-content">
-              <h3>버팔로윙봉</h3>
-              <p>매콤달콤한 버팔로 소스를 입힌 바삭한 윙봉</p>
-              <span class="menu-price">14,000원</span>
-            </div>
-          </div>
-          <div class="menu-card">
-            <div class="menu-card-image">
-              <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=600&q=80" alt="시골오일파스타" loading="lazy">
-            </div>
-            <div class="menu-card-content">
-              <h3>시골오일파스타</h3>
-              <p>담백한 올리브오일 베이스의 깔끔한 파스타</p>
-              <span class="menu-price">14,000원</span>
-            </div>
+        </div>
+        <div class="menu-card fade-up">
+          <div class="menu-img"><img src="./images/menu6.jpg" alt="수비드 닭가슴살 샐러드" loading="lazy"></div>
+          <div class="menu-content">
+            <h3>수비드 닭가슴살 샐러드</h3>
+            <p class="menu-desc">저온 조리한 촉촉한 닭가슴살과 신선한 야채</p>
+            <p class="menu-price">16,000원</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section drinks">
+    <section id="visit" class="why-visit section fade-up">
       <div class="container">
         <div class="section-header">
-          <span class="section-label">Beverage</span>
-          <h2 class="section-title">음료 & 주류</h2>
-          <p class="section-subtitle">식사와 함께 즐기는 다양한 음료</p>
-        </div>
-        <div class="drinks-grid">
-          <div class="drinks-category">
-            <h3>Non-Alcohol</h3>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">자몽에이드</div>
-                <div class="drink-desc">상큼한 자몽과 탄산의 청량함</div>
-              </div>
-              <span class="drink-price">6,000원</span>
-            </div>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">레몬에이드</div>
-                <div class="drink-desc">새콤달콤한 레몬의 상쾌함</div>
-              </div>
-              <span class="drink-price">6,000원</span>
-            </div>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">아메리카노</div>
-                <div class="drink-desc">깊고 진한 에스프레소</div>
-              </div>
-              <span class="drink-price">4,500원</span>
-            </div>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">카페라떼</div>
-                <div class="drink-desc">부드러운 우유와 에스프레소</div>
-              </div>
-              <span class="drink-price">5,000원</span>
-            </div>
-          </div>
-          <div class="drinks-category">
-            <h3>Alcohol</h3>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">생맥주</div>
-                <div class="drink-desc">시원하고 청량한 생맥주</div>
-              </div>
-              <span class="drink-price">5,000원</span>
-            </div>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">하우스 와인</div>
-                <div class="drink-desc">레드 / 화이트 선택 가능</div>
-              </div>
-              <span class="drink-price">7,000원</span>
-            </div>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">하이볼</div>
-                <div class="drink-desc">위스키와 탄산의 조화</div>
-              </div>
-              <span class="drink-price">8,000원</span>
-            </div>
-            <div class="drink-item">
-              <div>
-                <div class="drink-name">소주</div>
-                <div class="drink-desc">참이슬 / 처음처럼</div>
-              </div>
-              <span class="drink-price">4,000원</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-large" id="mood">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Dining Mood</span>
-          <h2 class="section-title">낮에는 여유로운 브런치<br>저녁에는 차분한 다이닝</h2>
-          <p class="section-subtitle">시간에 따라 달라지는 사생활만의 분위기를 경험하세요</p>
-        </div>
-        <div class="mood-grid">
-          <div class="mood-item mood-item-large">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="레스토랑 내부" loading="lazy">
-            <div class="mood-overlay">
-              <span>프라이빗한 공간</span>
-            </div>
-          </div>
-          <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="브런치 분위기" loading="lazy">
-            <div class="mood-overlay">
-              <span>여유로운 브런치</span>
-            </div>
-          </div>
-          <div class="mood-item">
-            <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="저녁 다이닝" loading="lazy">
-            <div class="mood-overlay">
-              <span>로맨틱한 디너</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-large why-visit">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Why Visit</span>
-          <h2 class="section-title">사생활을 방문해야 하는 이유</h2>
-          <p class="section-subtitle">부산 동래에서 만나는 특별한 식사 경험</p>
+          <span class="label">WHY VISIT</span>
+          <h2 class="title">사생활에서의 특별한 하루</h2>
         </div>
         <div class="why-grid">
-          <div class="why-card">
-            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <h3>편리한 위치</h3>
-            <p>부산 동래구 사직동<br>접근성 좋은 위치</p>
+          <div class="why-card fade-up">
+            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <h3>정성을 담은 맛과 퀄리티</h3>
+            <p>신선한 식재료, 타협 없는 조리법으로<br>맛있는 미식 경험을 제공합니다.</p>
           </div>
-          <div class="why-card">
-            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-            <h3>데이트 명소</h3>
-            <p>분위기 좋은<br>로맨틱한 공간</p>
+          <div class="why-card fade-up" style="transition-delay: 0.1s;">
+            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            <h3>편안한 무드</h3>
+            <p>소개팅, 데이트, 친목 모임에 어울리는<br>차분하고 세련된 인테리어.</p>
           </div>
-          <div class="why-card">
-            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
-            <h3>다양한 메뉴</h3>
-            <p>파스타, 샐러드, 피자<br>취향대로 선택</p>
-          </div>
-          <div class="why-card">
-            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-            <h3>감성 인테리어</h3>
-            <p>사진 찍기 좋은<br>포토제닉한 공간</p>
+          <div class="why-card fade-up" style="transition-delay: 0.2s;">
+            <svg class="why-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <h3>연중무휴 풀타임</h3>
+            <p>브레이크타임 없이 언제 방문해도<br>여유로운 식사가 가능합니다.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-large" id="gallery">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-label">Gallery</span>
-          <h2 class="section-title">사생활의 순간들</h2>
-          <p class="section-subtitle">맛있는 음식과 아름다운 공간의 기록</p>
-        </div>
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?w=800&q=80" alt="갤러리 이미지 1" loading="lazy">
-            <div class="gallery-overlay">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-              </svg>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=600&q=80" alt="갤러리 이미지 2" loading="lazy">
-            <div class="gallery-overlay">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-              </svg>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="갤러리 이미지 3" loading="lazy">
-            <div class="gallery-overlay">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-              </svg>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="갤러리 이미지 4" loading="lazy">
-            <div class="gallery-overlay">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-              </svg>
-            </div>
-          </div>
-          <div class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="갤러리 이미지 5" loading="lazy">
-            <div class="gallery-overlay">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/>
-              </svg>
-            </div>
-          </div>
-        </div>
+    <section id="photo" class="section container fade-up">
+      <div class="section-header">
+        <span class="label">PHOTO LOG</span>
+        <h2 class="title">우리의 기록</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-up"><img src="./images/gallery1.jpg" alt="갤러리 1" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="./images/gallery2.jpg" alt="갤러리 2" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="./images/gallery3.jpg" alt="갤러리 3" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="./images/gallery4.jpg" alt="갤러리 4" loading="lazy"></div>
+        <div class="gallery-item fade-up"><img src="./images/gallery5.jpg" alt="갤러리 5" loading="lazy"></div>
       </div>
     </section>
 
-    <section class="section section-large location" id="location">
+    <section class="section fade-up">
       <div class="container">
-        <div class="location-content">
-          <div class="location-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13045.244726553896!2d129.05273185541995!3d35.19882200000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568935c1c0a6b7d%3A0xc3b8417c8005391!2z67aA7IKw6rSR7Jet7IucIOuPme6emOq1rCDsgrzsp4Hrp5E!5e0!3m2!1sko!2skr!4v1716300000000!5m2!1sko!2skr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="location-wrapper">
+          <div class="loc-header">
+            <span class="label">LOCATION</span>
+            <h2 class="title">오시는 길</h2>
           </div>
-          <div class="location-info">
-            <span class="section-label">Location</span>
-            <h3>오시는 길</h3>
-            <div class="location-details">
-              <div class="location-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                <div>
-                  <h4>주소</h4>
-                  <p>부산광역시 동래구 사직동 000-00<br>1층 사생활</p>
-                </div>
-              </div>
-              <div class="location-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                </svg>
-                <div>
-                  <h4>영업시간</h4>
-                  <p>매일 11:30 - 21:00<br>브레이크타임 15:00 - 17:00<br>매주 월요일 정기휴무</p>
-                </div>
-              </div>
-              <div class="location-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-                <div>
-                  <h4>문의</h4>
-                  <p>051-000-0000</p>
-                </div>
-              </div>
-              <div class="location-item">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
-                </svg>
-                <div>
-                  <h4>주차</h4>
-                  <p>건물 내 주차 가능<br>2시간 무료 주차</p>
-                </div>
+          <div class="loc-info">
+            <div class="loc-row">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div class="loc-text">
+                <h4>주소</h4>
+                <p id="addressText">부산광역시 동래구 여고로113번길 78 (사직동)<br>A동 2층 사생활</p>
               </div>
             </div>
-            <a href="https://map.naver.com/p/search/부산동래구사직동사생활" target="_blank" class="btn-naver">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727v12.845z"/>
-              </svg>
-              네이버 지도에서 보기
+            <div class="loc-row">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div class="loc-text">
+                <h4>영업시간 (연중무휴)</h4>
+                <p>매일 11:00 - 21:00<br><span style="color:var(--color-accent); font-size:0.85rem;">* 브레이크타임 없음</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="loc-actions">
+            <button onclick="copyAddress()" class="btn-action">주소 복사하기</button>
+            <a href="tel:051-000-0000" class="btn-action">전화 문의하기</a>
+            <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-action" style="grid-column: 1 / -1; background: var(--color-primary-dark); color: #fff;">
+              <span class="icon-n" style="margin-right: 5px;">N</span> 네이버 지도로 길찾기
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section section-large reservation" id="reservation">
-      <div class="container">
-        <span class="section-label" style="color: rgba(255,255,255,0.7);">Reservation</span>
-        <h2>오늘의 식사를<br>조금 더 특별하게</h2>
-        <p>사생활에서의 특별한 시간을 예약해보세요</p>
-        <div class="reservation-buttons">
-          <a href="tel:051-000-0000" class="btn btn-primary">예약 문의하기</a>
-          <a href="https://www.instagram.com/explore/tags/사직동사생활/" target="_blank" class="btn btn-outline">인스타그램 보기</a>
-        </div>
+    <section class="cta-section fade-up">
+      <span class="label">RESERVATION</span>
+      <h2 class="title">오늘의 식사를<br>조금 더 특별하게</h2>
+      <p style="color: rgba(255,255,255,0.7); margin-top: 1rem;">사생활에서의 특별한 시간을 미리 준비하세요</p>
+      <div class="cta-buttons">
+        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-solid">
+          <span class="icon-n">N</span> 네이버 예약
+        </a>
+        <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-ghost" style="border-color: rgba(255,255,255,0.3); color: #fff;">
+          <span class="icon-c">C</span> 캐치테이블 예약
+        </a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <h3>사생활</h3>
-        <p>일상 속에서 만나는 가장 사적인 식사.<br>부산 동래구 사직동의 감성 다이닝.</p>
-        <div class="footer-social">
-          <a href="https://www.instagram.com/explore/tags/사직동사생활/" target="_blank" aria-label="Instagram">
-            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-        </div>
+    <div class="footer-inner">
+      <h3 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.5rem;">사생활</h3>
+      <p style="color: rgba(255,255,255,0.6); font-size: 0.9375rem;">부산 동래구 사직동, 감성 다이닝 레스토랑</p>
+      <div class="footer-sns">
+        <a href="https://www.instagram.com/theprivatelife_dongnae?igsh=NTRlenU1c2JrMG45" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
       </div>
-      <div class="footer-col">
-        <h4>영업시간</h4>
-        <p>매일 11:30 - 21:00</p>
-        <p>Break 15:00 - 17:00</p>
-        <p>월요일 정기휴무</p>
+      <div class="footer-bottom">
+        <p>© 2026 사생활 (The Private Life). All rights reserved.</p>
       </div>
-      <div class="footer-col">
-        <h4>연락처</h4>
-        <p>051-000-0000</p>
-        <a href="mailto:hello@sasaenghwal.com">hello@sasaenghwal.com</a>
-      </div>
-      <div class="footer-col">
-        <h4>주소</h4>
-        <p>부산광역시 동래구<br>사직동 000-00</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2024 사생활. All rights reserved.</p>
     </div>
   </footer>
 
+  <div class="mobile-sticky-bar">
+    <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="sticky-btn btn-naver-sticky">
+      <span class="icon-n">N</span> 네이버 예약
+    </a>
+    <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="sticky-btn btn-catch-sticky">
+      <span class="icon-c">C</span> 캐치테이블
+    </a>
+  </div>
+
   <script>
-    // Header scroll effect (Throttling 적용으로 성능 최적화)
+    /* 1. 헤더 스크롤 최적화 (Throttling) */
     const header = document.getElementById('header');
     let ticking = false;
-
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          if (window.scrollY > 100) {
+          if (window.scrollY > 50) {
             header.classList.remove('at-top');
             header.classList.add('scrolled');
           } else {
@@ -1383,28 +491,64 @@
       }
     });
 
-    // Mobile menu toggle 및 Scroll Lock 처리
+    /* 2. 모바일 메뉴 토글 및 스크롤 락 */
     const menu = document.getElementById('mobileMenu');
-    
     function toggleMobileMenu() {
       const isActive = menu.classList.toggle('active');
-      
-      // 스크롤 락 로직: 메뉴 활성화 시 스크롤 차단, 비활성화 시 해제
-      if (isActive) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
+      document.body.style.overflow = isActive ? 'hidden' : '';
     }
-
-    // 모바일 메뉴 안의 링크 클릭 시 메뉴 닫기 및 스크롤 락 해제
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-    mobileLinks.forEach(link => {
+    document.querySelectorAll('.mobile-link').forEach(link => {
       link.addEventListener('click', () => {
         menu.classList.remove('active');
         document.body.style.overflow = '';
       });
     });
+
+    /* 3. 주소 복사 기능 (로컬 fallback 안전장치 적용) */
+    function copyAddress() {
+      const address = "부산광역시 동래구 여고로113번길 78";
+      
+      // 최신 브라우저 & HTTPS 환경 (또는 localhost)
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(address).then(() => {
+          alert("주소가 복사되었습니다. 지도 앱에 붙여넣기 해주세요!");
+        }).catch(err => {
+          console.error('클립보드 복사 실패:', err);
+        });
+      } else {
+        // Fallback: 구형 브라우저 또는 일반 로컬(http) 환경 우회 처리
+        let textArea = document.createElement("textarea");
+        textArea.value = address;
+        // 텍스트 에어리어 화면 밖으로 숨기기
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+          document.execCommand('copy');
+          alert("주소가 복사되었습니다. 지도 앱에 붙여넣기 해주세요!");
+        } catch (err) {
+          console.error('Fallback 복사 실패:', err);
+        }
+        document.body.removeChild(textArea);
+      }
+    }
+
+    /* 4. 스크롤 페이드업(Fade-up) 애니메이션 */
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target); 
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+    fadeElements.forEach(el => fadeObserver.observe(el));
   </script>
 </body>
 </html>
