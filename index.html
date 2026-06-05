@@ -96,12 +96,13 @@
     }
 
     /* 브랜드 오리지널 컬러 아이콘 */
-    .icon-n, .icon-c { 
+    .icon-n, .icon-c, .icon-t { 
       display: inline-flex; align-items: center; justify-content: center; 
       width: 20px; height: 20px; font-weight: 700; font-size: 12px; border-radius: 4px; color: white; 
     }
     .icon-n { background: var(--color-naver); }
     .icon-c { background: var(--color-catch); border-radius: 50%; }
+    .icon-t { background: #1b3328; }
 
     /* 모바일 터치 반응형 */
     .btn-pill:active { transform: scale(0.96) translateY(-1px) !important; opacity: 0.9; }
@@ -249,6 +250,7 @@
       font-weight: 500; border-radius: 8px; cursor: pointer; text-decoration: none; transition: 0.2s; 
     }
     .btn-action-sub:hover { background: rgba(139,115,85,0.1); border-color: var(--color-accent); transform: translateY(-2px); }
+    .btn-tmap:hover { background: rgba(27,51,40,0.08); border-color: var(--color-primary-dark); }
 
     /* ====================================
        11. CTA (예약 영역)
@@ -907,8 +909,11 @@
             <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-action-sub">
               <span class="icon-n" style="margin-right: 5px;">N</span> 네이버 지도
             </a>
-            <a href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%A1%9C113%EB%B2%88%EA%B8%B8%2078" target="_blank" rel="noopener noreferrer" class="btn-pill btn-action-main">
-              <span class="icon-c">K</span> 카카오맵으로 보기
+            <a href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%A1%9C113%EB%B2%88%EA%B8%B8%2078" target="_blank" rel="noopener noreferrer" class="btn-action-sub">
+              <span class="icon-c" style="margin-right: 5px;">K</span> 카카오맵
+            </a>
+            <a href="tmap://search?name=%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%B6%81%EB%A1%9C%20202" class="btn-action-sub btn-tmap">
+              <span class="icon-t" style="margin-right: 5px;">T</span> 티맵 주차장
             </a>
           </div>
         </div>
