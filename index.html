@@ -20,68 +20,6 @@
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-
-    /* 5. 모바일 스티키 예약바 스크롤 후 노출 */
-    const stickyBar = document.querySelector('.mobile-sticky-bar');
-    function updateStickyBar() {
-      if (!stickyBar) return;
-      if (window.innerWidth <= 768 && window.scrollY > 220) {
-        stickyBar.classList.add('visible');
-      } else {
-        stickyBar.classList.remove('visible');
-      }
-    }
-    window.addEventListener('scroll', updateStickyBar, { passive: true });
-    window.addEventListener('resize', updateStickyBar);
-    updateStickyBar();
-
-    /* 6. 갤러리 라이트박스 */
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-
-    document.querySelectorAll('.gallery-item img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImage.src = img.src;
-        lightboxImage.alt = img.alt || '사생활 이미지';
-        lightbox.classList.add('active');
-        lightbox.setAttribute('aria-hidden', 'false');
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      lightbox.setAttribute('aria-hidden', 'true');
-      setTimeout(() => { lightboxImage.src = ''; }, 250);
-    }
-
-    lightbox.addEventListener('click', (event) => {
-      if (event.target === lightbox) closeLightbox();
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && lightbox.classList.contains('active')) {
-        closeLightbox();
-      }
-    });
-
-    /* 7. 현재 섹션에 맞춰 상단 메뉴 활성화 */
-    const sectionMap = ['about', 'menu', 'photo', 'visit'];
-    const navLinks = document.querySelectorAll('.nav a[href^="#"]');
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          const activeLink = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
-          if (activeLink) activeLink.classList.add('active');
-        }
-      });
-    }, { threshold: 0.45 });
-
-    sectionMap.forEach(id => {
-      const section = document.getElementById(id);
-      if (section) sectionObserver.observe(section);
-    });
-
   </script>
 
   <style>
@@ -1206,20 +1144,22 @@
     /* 7. 현재 섹션에 맞춰 상단 메뉴 활성화 */
     const sectionMap = ['about', 'menu', 'photo', 'visit'];
     const navLinks = document.querySelectorAll('.nav a[href^="#"]');
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(link => link.classList.remove('active'));
-          const activeLink = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
-          if (activeLink) activeLink.classList.add('active');
-        }
-      });
-    }, { threshold: 0.45 });
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
+            if (activeLink) activeLink.classList.add('active');
+          }
+        });
+      }, { threshold: 0.45 });
 
-    sectionMap.forEach(id => {
-      const section = document.getElementById(id);
-      if (section) sectionObserver.observe(section);
-    });
+      sectionMap.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) sectionObserver.observe(section);
+      });
+    }
 
   </script>
 </body>
