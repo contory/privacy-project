@@ -356,12 +356,13 @@
       88% { transform: rotate(18deg) translateX(380%); opacity: 0; }
     }
     .btn-pill,
-    .sticky-btn {
+    .sticky-btn,
+    .btn-action-sub {
+      align-items: center;
       line-height: 1;
     }
 
-    .icon-n,
-    .icon-c,
+    .brand-icon,
     .icon-k,
     .icon-t,
     .icon-copy {
@@ -372,18 +373,52 @@
       justify-content: center;
       width: 20px;
       height: 20px;
-      flex: 0 0 auto;
+      min-width: 20px;
+      flex: 0 0 20px;
       line-height: 1;
+      vertical-align: middle;
+      transform: translateZ(0);
+    }
+
+    .brand-icon {
+      color: currentColor;
+      font-size: 0;
+    }
+
+    .brand-icon svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+      flex: 0 0 20px;
+    }
+
+    .brand-icon svg rect,
+    .brand-icon svg circle {
+      fill: currentColor;
+    }
+
+    .brand-icon svg path {
+      fill: #fff;
+    }
+
+    .brand-icon-n {
+      color: var(--color-naver);
+    }
+
+    .brand-icon-c {
+      color: var(--color-catch);
+    }
+
+    .icon-k,
+    .icon-t,
+    .icon-copy {
       font-size: 0;
       font-family: Arial, Helvetica, sans-serif;
       font-weight: 900;
       letter-spacing: 0;
       text-align: center;
-      transform: translateZ(0);
     }
 
-    .icon-n::before,
-    .icon-c::before,
     .icon-k::before,
     .icon-t::before,
     .icon-copy::before {
@@ -393,28 +428,6 @@
       font-weight: 900;
       letter-spacing: 0;
       text-align: center;
-    }
-
-    .icon-n {
-      background: var(--color-naver);
-      color: #fff;
-      border-radius: 4px;
-    }
-    .icon-n::before {
-      content: 'N';
-      font-size: 11px;
-      transform: translateY(0.65px);
-    }
-
-    .icon-c {
-      background: var(--color-catch);
-      color: #fff;
-      border-radius: 50%;
-    }
-    .icon-c::before {
-      content: 'C';
-      font-size: 11px;
-      transform: translateY(0.65px);
     }
 
     .icon-k {
@@ -1181,8 +1194,8 @@
       <a href="#visit" class="mobile-menu-link mobile-link"><span>04</span>오시는 길</a>
     </nav>
     <div class="mobile-menu-actions">
-      <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="icon-n">N</span>네이버 예약</a>
-      <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="icon-c">C</span>캐치테이블</a>
+      <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="brand-icon brand-icon-n" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><rect width="20" height="20" rx="4"></rect><path d="M5 5h3.05l3.9 5.75V5H15v10h-3.05l-3.9-5.75V15H5V5z"></path></svg></span>네이버 예약</a>
+      <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="brand-icon brand-icon-c" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="10"></circle><path d="M13.3 7.35c-.72-.66-1.48-.96-2.42-.96-2 0-3.33 1.43-3.33 3.61s1.33 3.61 3.33 3.61c1 0 1.82-.35 2.48-1.02l1.42 1.63c-1.05.95-2.34 1.43-3.95 1.43-3.26 0-5.55-2.26-5.55-5.65s2.29-5.65 5.55-5.65c1.57 0 2.84.48 3.84 1.44l-1.37 1.56z"></path></svg></span>캐치테이블</a>
     </div>
   </div>
 
@@ -1193,8 +1206,8 @@
         <h1>사직동에서 즐기는<br>편안한 양식 한 끼</h1>
         <p>파스타와 피자, 브런치를 부담 없이 즐길 수 있는 동래 사직동 양식집입니다.</p>
         <div class="hero-buttons">
-          <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="icon-n">N</span> 네이버 예약하기</a>
-          <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="icon-c">C</span> 캐치테이블 예약</a>
+          <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="brand-icon brand-icon-n" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><rect width="20" height="20" rx="4"></rect><path d="M5 5h3.05l3.9 5.75V5H15v10h-3.05l-3.9-5.75V15H5V5z"></path></svg></span> 네이버 예약하기</a>
+          <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="brand-icon brand-icon-c" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="10"></circle><path d="M13.3 7.35c-.72-.66-1.48-.96-2.42-.96-2 0-3.33 1.43-3.33 3.61s1.33 3.61 3.33 3.61c1 0 1.82-.35 2.48-1.02l1.42 1.63c-1.05.95-2.34 1.43-3.95 1.43-3.26 0-5.55-2.26-5.55-5.65s2.29-5.65 5.55-5.65c1.57 0 2.84.48 3.84 1.44l-1.37 1.56z"></path></svg></span> 캐치테이블 예약</a>
         </div>
       </div>
     </section>
@@ -1333,7 +1346,7 @@
           </div>
           <div class="loc-actions">
             <button type="button" onclick="copyAddress()" class="btn-action-sub"><span class="icon-copy" aria-hidden="true">⧉</span> 주소 복사</button>
-            <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-action-sub"><span class="icon-n">N</span> 네이버 지도</a>
+            <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-action-sub"><span class="brand-icon brand-icon-n" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><rect width="20" height="20" rx="4"></rect><path d="M5 5h3.05l3.9 5.75V5H15v10h-3.05l-3.9-5.75V15H5V5z"></path></svg></span> 네이버 지도</a>
             <a href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%A1%9C113%EB%B2%88%EA%B8%B8%2078%20A%EB%8F%99%202%EC%B8%B5" target="_blank" rel="noopener noreferrer" class="btn-action-sub"><span class="icon-k">K</span> 카카오맵</a>
             <a href="tmap://search?name=%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%B6%81%EB%A1%9C%20202" class="btn-action-sub" onclick="showToast('티맵에서 주차장 주소를 검색합니다.')"><span class="icon-t">T</span> 티맵 주차장 검색</a>
           </div>
@@ -1346,8 +1359,8 @@
       <h2 class="title">방문 전 예약하고<br>편하게 들러보세요</h2>
       <p>네이버 예약과 캐치테이블에서 방문 시간을 확인할 수 있습니다.</p>
       <div class="cta-buttons">
-        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="icon-n">N</span> 네이버 예약</a>
-        <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="icon-c">C</span> 캐치테이블 예약</a>
+        <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="brand-icon brand-icon-n" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><rect width="20" height="20" rx="4"></rect><path d="M5 5h3.05l3.9 5.75V5H15v10h-3.05l-3.9-5.75V15H5V5z"></path></svg></span> 네이버 예약</a>
+        <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="brand-icon brand-icon-c" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="10"></circle><path d="M13.3 7.35c-.72-.66-1.48-.96-2.42-.96-2 0-3.33 1.43-3.33 3.61s1.33 3.61 3.33 3.61c1 0 1.82-.35 2.48-1.02l1.42 1.63c-1.05.95-2.34 1.43-3.95 1.43-3.26 0-5.55-2.26-5.55-5.65s2.29-5.65 5.55-5.65c1.57 0 2.84.48 3.84 1.44l-1.37 1.56z"></path></svg></span> 캐치테이블 예약</a>
       </div>
     </section>
   </main>
@@ -1387,8 +1400,8 @@
         <p class="menu-detail-price" id="menuDetailPrice">가격</p>
         <p class="menu-detail-desc" id="menuDetailDesc">메뉴 설명</p>
         <div class="menu-detail-actions">
-          <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="icon-n">N</span> 네이버 예약하기</a>
-          <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="icon-c">C</span> 캐치테이블 예약</a>
+          <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="brand-icon brand-icon-n" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><rect width="20" height="20" rx="4"></rect><path d="M5 5h3.05l3.9 5.75V5H15v10h-3.05l-3.9-5.75V15H5V5z"></path></svg></span> 네이버 예약하기</a>
+          <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="btn-pill btn-catch"><span class="brand-icon brand-icon-c" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="10"></circle><path d="M13.3 7.35c-.72-.66-1.48-.96-2.42-.96-2 0-3.33 1.43-3.33 3.61s1.33 3.61 3.33 3.61c1 0 1.82-.35 2.48-1.02l1.42 1.63c-1.05.95-2.34 1.43-3.95 1.43-3.26 0-5.55-2.26-5.55-5.65s2.29-5.65 5.55-5.65c1.57 0 2.84.48 3.84 1.44l-1.37 1.56z"></path></svg></span> 캐치테이블 예약</a>
           <button type="button" class="btn-pill btn-modal-close" onclick="closeMenuDetailModal()">닫기</button>
         </div>
       </div>
@@ -1396,8 +1409,8 @@
   </div>
 
   <div class="mobile-sticky-bar" id="mobileStickyBar">
-    <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="sticky-btn"><span class="icon-n">N</span> 네이버 예약</a>
-    <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="sticky-btn"><span class="icon-c">C</span> 캐치테이블</a>
+    <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="sticky-btn"><span class="brand-icon brand-icon-n" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><rect width="20" height="20" rx="4"></rect><path d="M5 5h3.05l3.9 5.75V5H15v10h-3.05l-3.9-5.75V15H5V5z"></path></svg></span> 네이버 예약</a>
+    <a href="https://app.catchtable.co.kr/ct/shop/theprivatelife_Busan?from=share&type=DINING" target="_blank" rel="noopener noreferrer" class="sticky-btn"><span class="brand-icon brand-icon-c" aria-hidden="true"><svg viewBox="0 0 20 20" focusable="false"><circle cx="10" cy="10" r="10"></circle><path d="M13.3 7.35c-.72-.66-1.48-.96-2.42-.96-2 0-3.33 1.43-3.33 3.61s1.33 3.61 3.33 3.61c1 0 1.82-.35 2.48-1.02l1.42 1.63c-1.05.95-2.34 1.43-3.95 1.43-3.26 0-5.55-2.26-5.55-5.65s2.29-5.65 5.55-5.65c1.57 0 2.84.48 3.84 1.44l-1.37 1.56z"></path></svg></span> 캐치테이블</a>
   </div>
 
   <script>
