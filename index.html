@@ -99,6 +99,7 @@
       --color-border: #eae6df;
       --color-naver: #03c75a;
       --color-catch: #ff4713;
+      --color-kakao: #fee500;
       --color-tmap: #2738ff;
       --font-serif: 'Cormorant Garamond', serif;
       --font-sans: 'Noto Sans KR', sans-serif;
@@ -354,7 +355,7 @@
       80% { opacity: 0.5; }
       88% { transform: rotate(18deg) translateX(380%); opacity: 0; }
     }
-    .icon-n, .icon-c, .icon-t {
+    .icon-n, .icon-c, .icon-k, .icon-t, .icon-copy {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -367,7 +368,16 @@
     }
     .icon-n { background: var(--color-naver); border-radius: 4px; }
     .icon-c { background: var(--color-catch); border-radius: 50%; }
+    .icon-k { background: var(--color-kakao); color: #1f1f1f; border-radius: 50%; font-weight: 900; }
     .icon-t { background: var(--color-tmap); border-radius: 5px; }
+    .icon-copy {
+      background: rgba(139,115,85,0.12);
+      color: var(--color-accent);
+      border: 1px solid rgba(139,115,85,0.28);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+    }
 
     .section { padding: 8rem 2rem; }
     .container { width: 100%; max-width: 1200px; margin: 0 auto; }
@@ -1229,8 +1239,11 @@
               <div class="loc-text"><h4>주소</h4><p>부산 동래구 여고로113번길 78 A동 2층</p></div>
             </div>
             <div class="loc-row">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 17l4 4 4-4m-4 4V3"/></svg>
-              <div class="loc-text"><h4>주차</h4><p>주차장 주소 : 부산 동래구 여고북로 202</p></div>
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="3" width="16" height="18" rx="4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7h4.2a3 3 0 0 1 0 6H9"/>
+              </svg>
+              <div class="loc-text"><h4>주차</h4><p>주차장 이용 시 : 부산 동래구 여고북로 202</p></div>
             </div>
             <div class="loc-row">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1246,9 +1259,9 @@
             </div>
           </div>
           <div class="loc-actions">
-            <button type="button" onclick="copyAddress()" class="btn-action-sub">주소 복사</button>
+            <button type="button" onclick="copyAddress()" class="btn-action-sub"><span class="icon-copy" aria-hidden="true">⧉</span> 주소 복사</button>
             <a href="https://map.naver.com/p/entry/place/1216375271" target="_blank" rel="noopener noreferrer" class="btn-action-sub"><span class="icon-n">N</span> 네이버 지도</a>
-            <a href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%A1%9C113%EB%B2%88%EA%B8%B8%2078%20A%EB%8F%99%202%EC%B8%B5" target="_blank" rel="noopener noreferrer" class="btn-action-sub"><span class="icon-c">K</span> 카카오맵</a>
+            <a href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%A1%9C113%EB%B2%88%EA%B8%B8%2078%20A%EB%8F%99%202%EC%B8%B5" target="_blank" rel="noopener noreferrer" class="btn-action-sub"><span class="icon-k">K</span> 카카오맵</a>
             <a href="tmap://search?name=%EB%B6%80%EC%82%B0%20%EB%8F%99%EB%9E%98%EA%B5%AC%20%EC%97%AC%EA%B3%A0%EB%B6%81%EB%A1%9C%20202" class="btn-action-sub" onclick="showToast('티맵에서 주차장 주소를 검색합니다.')"><span class="icon-t">T</span> 티맵 주차장 검색</a>
           </div>
         </div>
