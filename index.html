@@ -355,28 +355,101 @@
       80% { opacity: 0.5; }
       88% { transform: rotate(18deg) translateX(380%); opacity: 0; }
     }
-    .icon-n, .icon-c, .icon-k, .icon-t, .icon-copy {
+    .btn-pill,
+    .sticky-btn {
+      line-height: 1;
+    }
+
+    .icon-n,
+    .icon-c,
+    .icon-k,
+    .icon-t,
+    .icon-copy {
+      position: relative;
+      overflow: hidden;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 20px;
       height: 20px;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 800;
       flex: 0 0 auto;
+      line-height: 1;
+      font-size: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-align: center;
+      transform: translateZ(0);
     }
-    .icon-n { background: var(--color-naver); border-radius: 4px; }
-    .icon-c { background: var(--color-catch); border-radius: 50%; }
-    .icon-k { background: var(--color-kakao); color: #1f1f1f; border-radius: 50%; font-weight: 900; }
-    .icon-t { background: var(--color-tmap); border-radius: 5px; }
+
+    .icon-n::before,
+    .icon-c::before,
+    .icon-k::before,
+    .icon-t::before,
+    .icon-copy::before {
+      display: block;
+      line-height: 1;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-align: center;
+    }
+
+    .icon-n {
+      background: var(--color-naver);
+      color: #fff;
+      border-radius: 4px;
+    }
+    .icon-n::before {
+      content: 'N';
+      font-size: 11px;
+      transform: translateY(0.65px);
+    }
+
+    .icon-c {
+      background: var(--color-catch);
+      color: #fff;
+      border-radius: 50%;
+    }
+    .icon-c::before {
+      content: 'C';
+      font-size: 11px;
+      transform: translateY(0.65px);
+    }
+
+    .icon-k {
+      background: var(--color-kakao);
+      color: #1f1f1f;
+      border-radius: 50%;
+    }
+    .icon-k::before {
+      content: 'K';
+      font-size: 11px;
+      transform: translateY(0.65px);
+    }
+
+    .icon-t {
+      background: var(--color-tmap);
+      color: #fff;
+      border-radius: 5px;
+    }
+    .icon-t::before {
+      content: 'T';
+      font-size: 11px;
+      transform: translateY(0.65px);
+    }
+
     .icon-copy {
       background: rgba(139,115,85,0.12);
       color: var(--color-accent);
       border: 1px solid rgba(139,115,85,0.28);
       border-radius: 6px;
-      font-size: 13px;
+    }
+    .icon-copy::before {
+      content: '⧉';
+      font-size: 12px;
       font-weight: 700;
+      transform: translateY(0.25px);
     }
 
     .section { padding: 8rem 2rem; }
