@@ -117,6 +117,7 @@
     }
     a { color: inherit; }
     img { display: block; }
+    #about, #menu, #photo, #visit { scroll-margin-top: 86px; }
 
     /* 기본은 항상 보이게 두고, JS가 정상 작동할 때만 애니메이션 적용 */
     .fade-up {
@@ -1071,9 +1072,9 @@
       <a href="#top" class="logo" aria-label="사생활 동래점 홈">사생활 <span class="logo-sub">동래점</span></a>
       <nav class="nav" aria-label="주요 메뉴">
         <a href="#about">소개</a>
-        <a href="#menu">메뉴</a>
+        <a href="#menu">대표 메뉴</a>
         <a href="#photo">사진</a>
-        <a href="#visit">위치</a>
+        <a href="#visit">오시는 길</a>
         <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-nav-book">예약하기</a>
       </nav>
       <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="모바일 메뉴 열기">
@@ -1406,9 +1407,46 @@
       if (menu.classList.contains('active')) event.preventDefault();
     }, { passive: false });
 
+    function scrollToHashTarget(hash) {
+      if (!hash || hash === '#') return;
+
+      const target = hash === '#top' ? document.getElementById('top') : document.querySelector(hash);
+      if (!target) return;
+
+      const headerOffset = window.innerWidth <= 768 ? 72 : 86;
+      const targetTop = hash === '#top'
+        ? 0
+        : target.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth'
+      });
+
+      if (history.pushState) {
+        history.pushState(null, '', hash);
+      } else {
+        window.location.hash = hash;
+      }
+    }
+
     document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        if (menu.classList.contains('active')) toggleMobileMenu(false);
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+
+        if (!menu.classList.contains('active')) return;
+
+        if (href && href.startsWith('#')) {
+          event.preventDefault();
+          toggleMobileMenu(false);
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => scrollToHashTarget(href));
+          });
+          return;
+        }
+
+        toggleMobileMenu(false);
       });
     });
 
