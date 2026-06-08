@@ -832,28 +832,31 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 1.1rem;
-      padding: 2.5rem 0;
+      gap: 0.82rem;
+      padding: 1.6rem 0 1rem;
+      transform: translateY(-3.5vh);
     }
     .mobile-menu-link {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.9rem;
       color: var(--color-text-main);
       text-decoration: none;
-      font-size: clamp(1.75rem, 8vw, 2.5rem);
+      font-size: clamp(1.55rem, 7vw, 2.08rem);
       font-weight: 600;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
+      line-height: 1.18;
       opacity: 0;
       transform: translateY(14px);
       transition: opacity 0.36s ease, transform 0.36s ease;
     }
     .mobile-menu-link span {
       font-family: var(--font-serif);
-      font-size: 0.9rem;
+      font-size: 0.78rem;
       color: var(--color-accent);
       letter-spacing: 0.08em;
-      min-width: 34px;
+      min-width: 32px;
+      transform: translateY(0.08rem);
     }
     .mobile-menu.active .mobile-menu-link { opacity: 1; transform: translateY(0); }
     .mobile-menu.active .mobile-menu-link:nth-child(1) { transition-delay: 0.06s; }
@@ -863,10 +866,11 @@
     .mobile-menu-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
+      gap: 0.72rem;
       opacity: 0;
       transform: translateY(12px);
       transition: opacity 0.38s ease 0.26s, transform 0.38s ease 0.26s;
+      padding-top: 0.8rem;
     }
     .mobile-menu.active .mobile-menu-actions { opacity: 1; transform: translateY(0); }
     .mobile-menu-actions .btn-pill { min-height: 48px; padding: 0.8rem 0.8rem; font-size: 0.86rem; background: #fff; border-color: var(--color-border); }
@@ -939,6 +943,27 @@
       .header { padding: 1rem 1.25rem; }
       .nav, .btn-nav-book { display: none; }
       .mobile-menu-btn { display: inline-flex; }
+      .mobile-menu {
+        min-height: 100svh;
+        padding: calc(1.1rem + env(safe-area-inset-top)) 1.45rem calc(1.25rem + env(safe-area-inset-bottom));
+      }
+      .mobile-menu-brand .logo {
+        font-size: 1.62rem;
+      }
+      .mobile-menu-brand p {
+        font-size: 0.8rem;
+        margin-top: 0.28rem;
+      }
+      .mobile-menu-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.45rem;
+      }
+      .mobile-menu-actions .btn-pill {
+        min-height: 46px;
+        padding: 0.72rem 0.7rem;
+        font-size: 0.82rem;
+      }
       .logo { font-size: 1.55rem; }
       .logo-sub { font-size: 0.75rem; }
       .hero { padding: 7rem 1.25rem 5rem; align-items: center; }
@@ -1009,6 +1034,26 @@
       }
     }
 
+    @media (max-width: 768px) and (max-height: 720px) {
+      .mobile-menu-links {
+        gap: 0.62rem;
+        padding: 1rem 0 0.6rem;
+        transform: translateY(-1.5vh);
+      }
+      .mobile-menu-link {
+        font-size: clamp(1.42rem, 6.4vw, 1.9rem);
+      }
+      .mobile-menu-brand p {
+        display: none;
+      }
+      .mobile-menu-actions {
+        padding-top: 0.45rem;
+      }
+      .mobile-menu-actions .btn-pill {
+        min-height: 42px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.001ms !important;
@@ -1047,9 +1092,9 @@
     </div>
     <nav class="mobile-menu-links" aria-label="모바일 메뉴">
       <a href="#about" class="mobile-menu-link mobile-link"><span>01</span>소개</a>
-      <a href="#menu" class="mobile-menu-link mobile-link"><span>02</span>메뉴</a>
+      <a href="#menu" class="mobile-menu-link mobile-link"><span>02</span>대표 메뉴</a>
       <a href="#photo" class="mobile-menu-link mobile-link"><span>03</span>사진</a>
-      <a href="#visit" class="mobile-menu-link mobile-link"><span>04</span>위치</a>
+      <a href="#visit" class="mobile-menu-link mobile-link"><span>04</span>오시는 길</a>
     </nav>
     <div class="mobile-menu-actions">
       <a href="https://pcmap.place.naver.com/restaurant/1216375271/booking" target="_blank" rel="noopener noreferrer" class="btn-pill btn-naver"><span class="icon-n">N</span>네이버 예약</a>
