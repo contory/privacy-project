@@ -1322,14 +1322,14 @@
           <div class="loc-info">
             <div class="loc-row">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-              <div class="loc-text"><h4>주소</h4><p>부산 동래구 여고로113번길 78 A동 2층</p></div>
+              <div class="loc-text"><h4>주소</h4><p>부산 동래구 여고로113번길 78 A동 2층<br>농협 맞은편 하삼동커피 건물 2층</p></div>
             </div>
             <div class="loc-row">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="4" y="3" width="16" height="18" rx="4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7h4.2a3 3 0 0 1 0 6H9"/>
               </svg>
-              <div class="loc-text"><h4>주차</h4><p>주차장 이용 시 : 부산 동래구 여고북로 202</p></div>
+              <div class="loc-text"><h4>주차</h4><p>동영민영주차장 · 도보 3분<br>주소 : 부산 동래구 여고북로 202</p></div>
             </div>
             <div class="loc-row">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -1560,7 +1560,7 @@
     }
 
     function copyAddress() {
-      const address = "매장: 부산 동래구 여고로113번길 78 A동 2층\n주차장: 부산 동래구 여고북로 202";
+      const address = "매장: 부산 동래구 여고로113번길 78 A동 2층 (농협 맞은편 하삼동커피 건물 2층)\n주차장: 동영민영주차장 - 도보 3분\n주차장 주소: 부산 동래구 여고북로 202";
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(address).then(() => showToast('주소와 주차장 주소가 복사되었습니다.')).catch(() => fallbackCopy(address));
       } else {
